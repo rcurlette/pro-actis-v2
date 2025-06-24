@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Harvey AI Custom Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
 @layer base {
   /**
    * Tailwind CSS theme
@@ -40,20 +43,21 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Harvey AI brand variables */
+    --harvey-dark: 15 13% 5.5%;
+    --harvey-dark-secondary: 31 13% 11%;
+    --harvey-light: 250 10% 98%;
+    --harvey-text-muted: 143 6% 54%;
+    --harvey-text-muted-dark: 112 3% 41%;
+    --harvey-accent: 206 15% 83%;
   }
 
   .dark {
@@ -102,5 +106,71 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "liga", "calt";
+  }
+
+  /* Custom Harvey font setup */
+  .font-harvey-serif {
+    font-family:
+      "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+    font-feature-settings: "liga", "calt";
+  }
+
+  /* Smooth animations */
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--harvey-dark-secondary));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--harvey-text-muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--harvey-light));
+  }
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Harvey AI component styles */
+  .harvey-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--harvey-dark)) 0%,
+      hsl(var(--harvey-dark-secondary)) 100%
+    );
+  }
+
+  .harvey-button {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .harvey-button-primary {
+    @apply harvey-button bg-harvey-light text-harvey-dark hover:bg-harvey-light/90 h-12 px-6;
+  }
+
+  .harvey-container {
+    @apply mx-auto max-w-9xl px-8 lg:px-16;
+  }
+
+  .harvey-section {
+    @apply py-16 md:py-24 lg:py-32;
   }
 }
