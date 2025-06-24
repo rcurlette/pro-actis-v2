@@ -1,4 +1,14 @@
+import { useState } from "react";
+import ContactFormModal from "@/components/ContactFormModal";
+
 const ProcessSection = () => {
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "demo",
+  });
   const processSteps = [
     {
       step: "01",
@@ -188,16 +198,29 @@ const ProcessSection = () => {
               step towards increasing your revenue by 10% with AI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="proactis-button-primary">
+              <button
+                className="proactis-button-primary"
+                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+              >
                 Book Your Complimentary Exploring Video Call
               </button>
-              <button className="proactis-button-secondary">
+              <button
+                className="proactis-button-secondary"
+                onClick={() => setContactModal({ isOpen: true, type: "info" })}
+              >
                 Request Detailed Info
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "demo" })}
+        formType={contactModal.type}
+      />
     </section>
   );
 };

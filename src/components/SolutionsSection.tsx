@@ -1,4 +1,14 @@
+import { useState } from "react";
+import ContactFormModal from "@/components/ContactFormModal";
+
 const SolutionsSection = () => {
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "demo",
+  });
   const solutions = [
     {
       icon: (
@@ -178,7 +188,12 @@ const SolutionsSection = () => {
                 revenue by 10% with our AI solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-proactis-primary px-8 py-4 rounded-lg font-semibold hover:bg-proactis-gray-50 transition-all group">
+                <button
+                  className="bg-white text-proactis-primary px-8 py-4 rounded-lg font-semibold hover:bg-proactis-gray-50 transition-all group"
+                  onClick={() =>
+                    setContactModal({ isOpen: true, type: "demo" })
+                  }
+                >
                   Book Your Complimentary Call
                   <svg
                     className="ml-2 w-5 h-5 inline group-hover:translate-x-1 transition-transform"
@@ -194,7 +209,12 @@ const SolutionsSection = () => {
                     />
                   </svg>
                 </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-proactis-primary transition-all">
+                <button
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-proactis-primary transition-all"
+                  onClick={() =>
+                    setContactModal({ isOpen: true, type: "info" })
+                  }
+                >
                   Request Info Package
                 </button>
               </div>
@@ -223,6 +243,13 @@ const SolutionsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "demo" })}
+        formType={contactModal.type}
+      />
     </section>
   );
 };

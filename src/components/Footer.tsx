@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ContactFormModal from "@/components/ContactFormModal";
 
 const Footer = () => {
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "demo",
+  });
   const footerLinks = {
     Solutions: [
       "Lead Generation AI",
@@ -48,12 +57,16 @@ const Footer = () => {
               transformed their practice with our AI solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-proactis-primary hover:bg-proactis-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-lg">
+              <Button
+                className="bg-proactis-primary hover:bg-proactis-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-lg"
+                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+              >
                 Book Your Complimentary Exploring Video Call
               </Button>
               <Button
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-proactis-dark px-8 py-4 text-lg font-semibold rounded-lg"
+                onClick={() => setContactModal({ isOpen: true, type: "info" })}
               >
                 Request Info Package
               </Button>
@@ -236,6 +249,13 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "demo" })}
+        formType={contactModal.type}
+      />
     </footer>
   );
 };

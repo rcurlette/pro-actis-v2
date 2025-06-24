@@ -1,4 +1,14 @@
+import { useState } from "react";
+import ContactFormModal from "@/components/ContactFormModal";
+
 const AIShowcaseSection = () => {
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "demo",
+  });
   return (
     <section className="proactis-section bg-proactis-dark text-white overflow-hidden">
       <div className="proactis-container">
@@ -148,7 +158,10 @@ const AIShowcaseSection = () => {
               </div>
             </div>
 
-            <button className="bg-proactis-secondary hover:bg-proactis-secondary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all group">
+            <button
+              className="bg-proactis-secondary hover:bg-proactis-secondary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all group"
+              onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+            >
               Schedule Your AI Demo
               <svg
                 className="ml-2 w-5 h-5 inline group-hover:translate-x-1 transition-transform"
@@ -234,6 +247,13 @@ const AIShowcaseSection = () => {
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-proactis-primary/10 to-transparent pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-proactis-secondary/5 to-transparent pointer-events-none"></div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "demo" })}
+        formType={contactModal.type}
+      />
     </section>
   );
 };
