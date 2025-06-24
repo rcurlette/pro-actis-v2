@@ -2,15 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Harvey AI Custom Fonts */
+/* Inter font for modern, professional look */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 @layer base {
-  /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -51,51 +47,41 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Harvey AI brand variables */
-    --harvey-dark: 15 13% 5.5%;
-    --harvey-dark-secondary: 31 13% 11%;
-    --harvey-light: 250 10% 98%;
-    --harvey-text-muted: 143 6% 54%;
-    --harvey-text-muted-dark: 112 3% 41%;
-    --harvey-accent: 206 15% 83%;
+    /* Pro-Actis brand colors */
+    --proactis-primary: 213 94% 68%; /* #1e40af - Professional blue */
+    --proactis-secondary: 45 93% 47%; /* #d97706 - Gold accent */
+    --proactis-light: 213 100% 85%; /* Light blue */
+    --proactis-dark: 213 100% 20%; /* Dark navy */
+    --proactis-success: 142 76% 36%; /* Professional green */
+
+    --proactis-gray-50: 210 40% 98%;
+    --proactis-gray-100: 210 40% 96%;
+    --proactis-gray-200: 214 32% 91%;
+    --proactis-gray-300: 213 27% 84%;
+    --proactis-gray-600: 215 28% 17%;
+    --proactis-gray-900: 222 84% 5%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -105,19 +91,23 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "liga", "calt";
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 
-  /* Custom Harvey font setup */
-  .font-harvey-serif {
-    font-family:
-      "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
-    font-feature-settings: "liga", "calt";
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
   }
 
-  /* Smooth animations */
-  * {
+  /* Smooth scrolling */
+  html {
     scroll-behavior: smooth;
   }
 
@@ -127,16 +117,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: hsl(var(--harvey-dark-secondary));
+    background: hsl(var(--proactis-gray-100));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--harvey-text-muted));
+    background: hsl(var(--proactis-gray-300));
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--harvey-light));
+    background: hsl(var(--proactis-primary));
   }
 }
 
@@ -149,28 +139,36 @@
     text-wrap: pretty;
   }
 
-  /* Harvey AI component styles */
-  .harvey-gradient {
+  /* Pro-Actis component styles */
+  .proactis-container {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .proactis-section {
+    @apply py-16 lg:py-24;
+  }
+
+  .proactis-button-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-proactis-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:bg-proactis-primary/90 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-proactis-primary focus-visible:ring-offset-2;
+  }
+
+  .proactis-button-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-proactis-primary bg-transparent px-8 py-4 text-base font-semibold text-proactis-primary transition-all duration-200 hover:bg-proactis-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-proactis-primary focus-visible:ring-offset-2;
+  }
+
+  .proactis-card {
+    @apply rounded-xl border border-proactis-gray-200 bg-white p-8 shadow-sm transition-all duration-200 hover:shadow-lg;
+  }
+
+  .proactis-gradient-bg {
     background: linear-gradient(
       135deg,
-      hsl(var(--harvey-dark)) 0%,
-      hsl(var(--harvey-dark-secondary)) 100%
+      hsl(var(--proactis-primary)) 0%,
+      hsl(var(--proactis-light)) 100%
     );
   }
 
-  .harvey-button {
-    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
-  }
-
-  .harvey-button-primary {
-    @apply harvey-button bg-harvey-light text-harvey-dark hover:bg-harvey-light/90 h-12 px-6;
-  }
-
-  .harvey-container {
-    @apply mx-auto max-w-9xl px-8 lg:px-16;
-  }
-
-  .harvey-section {
-    @apply py-16 md:py-24 lg:py-32;
+  .proactis-badge {
+    @apply inline-flex items-center rounded-full bg-proactis-light/20 px-3 py-1 text-sm font-medium text-proactis-primary;
   }
 }

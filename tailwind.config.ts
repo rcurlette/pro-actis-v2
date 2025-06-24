@@ -62,14 +62,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Harvey AI brand colors
-        harvey: {
-          dark: "rgb(15, 14, 13)",
-          "dark-secondary": "rgb(31, 29, 26)",
-          light: "rgb(250, 250, 249)",
-          "text-muted": "rgb(143, 139, 133)",
-          "text-muted-dark": "rgb(112, 109, 102)",
-          accent: "rgb(206, 216, 217)",
+        // Pro-Actis brand colors
+        proactis: {
+          primary: "hsl(var(--proactis-primary))", // Deep blue
+          secondary: "hsl(var(--proactis-secondary))", // Gold accent
+          light: "hsl(var(--proactis-light))", // Light blue
+          dark: "hsl(var(--proactis-dark))", // Dark navy
+          success: "hsl(var(--proactis-success))", // Green
+          gray: {
+            50: "hsl(var(--proactis-gray-50))",
+            100: "hsl(var(--proactis-gray-100))",
+            200: "hsl(var(--proactis-gray-200))",
+            300: "hsl(var(--proactis-gray-300))",
+            600: "hsl(var(--proactis-gray-600))",
+            900: "hsl(var(--proactis-gray-900))",
+          },
         },
       },
       borderRadius: {
@@ -78,41 +85,40 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        serif: [
-          "'__HarveySerifFont_4c64a5'",
-          "'__HarveySerifFont_fallback_4c64a5'",
-          "Georgia",
-          "Cambria",
-          '"Times New Roman"',
-          "Times",
-          "serif",
-        ],
         sans: [
+          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
           "Roboto",
-          "Oxygen",
-          "Ubuntu",
-          "Cantarell",
-          '"Open Sans"',
-          '"Helvetica Neue"',
           "sans-serif",
+        ],
+        serif: [
+          "Playfair Display",
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "serif",
         ],
       },
       fontSize: {
-        hero: ["72px", { lineHeight: "75.6px", letterSpacing: "-1.08px" }],
-        "heading-xl": ["48px", { lineHeight: "1.1", letterSpacing: "-0.6px" }],
-        "heading-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.32px" }],
-        body: ["16px", { lineHeight: "20.8px" }],
-        "body-sm": ["14px", { lineHeight: "20.8px" }],
+        hero: ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "hero-sm": ["2.5rem", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        "heading-xl": [
+          "2.5rem",
+          { lineHeight: "1.2", letterSpacing: "-0.01em" },
+        ],
+        "heading-lg": ["2rem", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
+        "heading-md": ["1.5rem", { lineHeight: "1.4" }],
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
-        scroll: "scroll 30s linear infinite",
+        "slide-in-left": "slide-in-left 0.6s ease-out",
+        "slide-in-right": "slide-in-right 0.6s ease-out",
+        "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
       },
       keyframes: {
         "accordion-down": {
@@ -124,26 +130,31 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-up": {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        scroll: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
+        "slide-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "bounce-subtle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
-      maxWidth: {
-        "8xl": "1920px",
-        "9xl": "1728px",
-      },
-      spacing: {
-        "18": "4.5rem",
-        "88": "22rem",
-        "128": "32rem",
+      backgroundImage: {
+        "gradient-primary":
+          "linear-gradient(135deg, hsl(var(--proactis-primary)) 0%, hsl(var(--proactis-light)) 100%)",
+        "gradient-secondary":
+          "linear-gradient(135deg, hsl(var(--proactis-secondary)) 0%, #fbbf24 100%)",
       },
     },
   },
