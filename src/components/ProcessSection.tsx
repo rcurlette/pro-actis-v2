@@ -93,7 +93,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="proactis-section bg-proactis-gray-50">
+    <section id="process" className="proactis-section bg-white">
       <div className="proactis-container">
         <div className="text-center mb-16">
           <div className="proactis-badge mb-6">📋 Our Proven Process</div>
@@ -106,49 +106,56 @@ const ProcessSection = () => {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-proactis-primary/20 h-full"></div>
+        {/* Streamlined step-by-step layout */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute left-8 top-16 bottom-16 w-0.5 bg-gradient-to-b from-proactis-primary via-proactis-light to-proactis-primary"></div>
 
-          <div className="space-y-16">
-            {processSteps.map((step, index) => (
-              <div
-                key={step.step}
-                className={`flex flex-col lg:flex-row items-center gap-8 ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                }`}
-              >
-                {/* Content */}
-                <div className="flex-1 lg:max-w-md">
-                  <div className="proactis-card text-center lg:text-left">
-                    <div className="flex items-center justify-center lg:justify-start mb-4">
-                      <div className="w-12 h-12 bg-proactis-primary/10 rounded-lg flex items-center justify-center mr-4">
-                        <svg
-                          className="w-6 h-6 text-proactis-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          {step.icon}
-                        </svg>
-                      </div>
-                      <div className="text-2xl font-bold text-proactis-primary">
-                        {step.step}
+            <div className="space-y-8">
+              {processSteps.map((step, index) => (
+                <div
+                  key={step.step}
+                  className="relative group"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex items-start gap-6">
+                    {/* Step number and icon */}
+                    <div className="flex-shrink-0">
+                      <div className="relative">
+                        {/* Step number circle */}
+                        <div className="w-16 h-16 bg-proactis-primary text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg group-hover:scale-110 transition-transform duration-200">
+                          {step.step}
+                        </div>
+
+                        {/* Icon overlay */}
+                        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white border-2 border-proactis-primary rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-proactis-primary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            {step.icon}
+                          </svg>
+                        </div>
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-semibold text-proactis-dark mb-4">
-                      {step.title}
-                    </h3>
+                    {/* Content */}
+                    <div className="flex-1 bg-proactis-gray-50 rounded-xl p-6 group-hover:bg-white group-hover:shadow-lg transition-all duration-200 border border-transparent group-hover:border-proactis-primary/20">
+                      <h3 className="text-xl font-bold text-proactis-dark mb-3">
+                        {step.title}
+                      </h3>
 
-                    <p className="text-proactis-gray-600 mb-6 text-pretty">
-                      {step.description}
-                    </p>
+                      <p className="text-proactis-gray-600 mb-4 text-pretty leading-relaxed">
+                        {step.description}
+                      </p>
 
-                    <div className="bg-proactis-light/20 rounded-lg p-3">
-                      <div className="flex items-center justify-center lg:justify-start">
+                      {/* Deliverable */}
+                      <div className="inline-flex items-center bg-proactis-success/10 text-proactis-success px-3 py-2 rounded-full text-sm font-medium">
                         <svg
-                          className="w-4 h-4 text-proactis-success mr-2"
+                          className="w-4 h-4 mr-2"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -160,84 +167,23 @@ const ProcessSection = () => {
                             d="M5 13l4 4L19 7"
                           />
                         </svg>
-                        <span className="text-sm font-medium text-proactis-dark">
-                          {step.deliverable}
-                        </span>
+                        {step.deliverable}
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Timeline node */}
-                <div className="hidden lg:flex w-16 h-16 bg-proactis-primary rounded-full items-center justify-center text-white font-bold text-lg shadow-lg z-10">
-                  {step.step}
-                </div>
-
-                {/* Enhanced visual with dynamic elements */}
-                <div className="flex-1 lg:max-w-md">
-                  <div className="relative aspect-square bg-gradient-primary rounded-2xl p-8 flex items-center justify-center overflow-hidden shadow-lg">
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="grid grid-cols-6 grid-rows-6 w-full h-full">
-                        {Array.from({ length: 36 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className="border border-white/30"
-                            style={{
-                              animationDelay: `${i * 0.05}s`,
-                              animation: "pulse 3s ease-in-out infinite",
-                            }}
-                          ></div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Main content */}
-                    <div className="text-center text-white relative z-10">
-                      <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <svg
-                          className="w-10 h-10"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          {step.icon}
-                        </svg>
-                      </div>
-                      <div className="text-xl font-bold mb-2">
-                        Step {step.step}
-                      </div>
-                      <div className="text-sm opacity-90 font-medium">
-                        {step.title}
-                      </div>
-
-                      {/* Progress indicator */}
-                      <div className="mt-4 w-full bg-white/20 rounded-full h-2">
-                        <div
-                          className="bg-white h-2 rounded-full transition-all duration-1000"
-                          style={{
-                            width: `${(parseInt(step.step) / 6) * 100}%`,
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    {/* Floating decoration */}
-                    <div className="absolute top-4 right-4 w-6 h-6 bg-white/20 rounded-full animate-bounce-subtle"></div>
-                    <div className="absolute bottom-4 left-4 w-4 h-4 bg-white/30 rounded-full"></div>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* Call to action */}
         <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-proactis-gray-200 max-w-2xl mx-auto">
+          <div className="bg-gradient-to-r from-proactis-primary/5 to-proactis-light/20 rounded-2xl p-8 max-w-3xl mx-auto border border-proactis-primary/10">
             <h3 className="text-2xl font-bold text-proactis-dark mb-4">
               Ready to Start Your AI Transformation?
             </h3>
-            <p className="text-proactis-gray-600 mb-6">
+            <p className="text-proactis-gray-600 mb-6 text-lg">
               Book your complimentary discovery meeting today and take the first
               step towards increasing your revenue by 10% with AI.
             </p>
