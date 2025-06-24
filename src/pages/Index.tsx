@@ -5,6 +5,7 @@ import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AIShowcaseSection from "@/components/AIShowcaseSection";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <AIShowcaseSection />
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };

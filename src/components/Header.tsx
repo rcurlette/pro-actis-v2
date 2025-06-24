@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ContactFormModal from "@/components/ContactFormModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "info",
+  });
 
   const navItems = [
     { label: "Solutions", href: "#solutions" },
@@ -58,10 +66,16 @@ const Header = () => {
             <Button
               variant="ghost"
               className="text-proactis-primary hover:text-proactis-primary hover:bg-proactis-light/20"
+              onClick={() => setContactModal({ isOpen: true, type: "info" })}
             >
               Request Info
             </Button>
-            <Button className="proactis-button-primary">Book Free Call</Button>
+            <Button
+              className="proactis-button-primary"
+              onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+            >
+              Book Free Call
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,10 +127,20 @@ const Header = () => {
                 <Button
                   variant="outline"
                   className="justify-start text-proactis-primary border-proactis-primary hover:bg-proactis-primary hover:text-white"
+                  onClick={() => {
+                    setContactModal({ isOpen: true, type: "info" });
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Request Info
                 </Button>
-                <Button className="proactis-button-primary justify-start">
+                <Button
+                  className="proactis-button-primary justify-start"
+                  onClick={() => {
+                    setContactModal({ isOpen: true, type: "demo" });
+                    setIsMenuOpen(false);
+                  }}
+                >
                   Book Free Call
                 </Button>
               </div>
@@ -124,6 +148,13 @@ const Header = () => {
           </div>
         )}
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "info" })}
+        formType={contactModal.type}
+      />
     </header>
   );
 };

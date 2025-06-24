@@ -1,6 +1,16 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ContactFormModal from "@/components/ContactFormModal";
 
 const HeroSection = () => {
+  const [contactModal, setContactModal] = useState<{
+    isOpen: boolean;
+    type: "demo" | "info";
+  }>({
+    isOpen: false,
+    type: "demo",
+  });
+
   return (
     <section className="proactis-section pt-32 bg-gradient-to-br from-proactis-gray-50 to-white">
       <div className="proactis-container">
@@ -24,25 +34,29 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button className="proactis-button-primary group" asChild>
-                <a href="#contact">
-                  Book Your Complimentary Call
-                  <svg
-                    className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
+              <Button
+                className="proactis-button-primary group"
+                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+              >
+                Book Your Complimentary Call
+                <svg
+                  className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
               </Button>
-              <Button className="proactis-button-secondary">
+              <Button
+                className="proactis-button-secondary"
+                onClick={() => setContactModal({ isOpen: true, type: "info" })}
+              >
                 Request Info
               </Button>
             </div>
@@ -202,6 +216,13 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false, type: "demo" })}
+        formType={contactModal.type}
+      />
     </section>
   );
 };
