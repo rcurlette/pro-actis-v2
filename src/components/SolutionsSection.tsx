@@ -166,17 +166,60 @@ const SolutionsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-proactis-gray-600 mb-6">
-            Ready to see how these solutions can transform your practice?
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="proactis-button-primary">
-              Book Your Complimentary Exploring Video Call
-            </button>
-            <button className="proactis-button-secondary">
-              Request Info Package
-            </button>
+        {/* Visual showcase with professional consultation */}
+        <div className="mt-16 bg-gradient-to-r from-proactis-primary to-proactis-light rounded-3xl overflow-hidden shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+            <div className="p-8 lg:p-12 text-white">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4">
+                Ready to Transform Your Practice?
+              </h3>
+              <p className="text-proactis-light/90 mb-6 text-lg">
+                Join European legal professionals who've already increased their
+                revenue by 10% with our AI solutions.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-white text-proactis-primary px-8 py-4 rounded-lg font-semibold hover:bg-proactis-gray-50 transition-all group">
+                  Book Your Complimentary Call
+                  <svg
+                    className="ml-2 w-5 h-5 inline group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </button>
+                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-proactis-primary transition-all">
+                  Request Info Package
+                </button>
+              </div>
+            </div>
+
+            <div className="relative h-64 lg:h-80">
+              <img
+                src="https://images.pexels.com/photos/8112172/pexels-photo-8112172.jpeg"
+                alt="Professional legal consultation with AI integration"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-proactis-primary/30 to-transparent"></div>
+
+              {/* Success metrics overlay */}
+              <div className="absolute top-4 left-4">
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-sm font-semibold text-proactis-dark">
+                    Success Rate
+                  </div>
+                  <div className="text-2xl font-bold text-proactis-success">
+                    98.5%
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

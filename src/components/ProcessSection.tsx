@@ -173,13 +173,30 @@ const ProcessSection = () => {
                   {step.step}
                 </div>
 
-                {/* Visual placeholder */}
+                {/* Enhanced visual with dynamic elements */}
                 <div className="flex-1 lg:max-w-md">
-                  <div className="aspect-square bg-gradient-primary rounded-2xl p-8 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="relative aspect-square bg-gradient-primary rounded-2xl p-8 flex items-center justify-center overflow-hidden shadow-lg">
+                    {/* Background pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="grid grid-cols-6 grid-rows-6 w-full h-full">
+                        {Array.from({ length: 36 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="border border-white/30"
+                            style={{
+                              animationDelay: `${i * 0.05}s`,
+                              animation: "pulse 3s ease-in-out infinite",
+                            }}
+                          ></div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Main content */}
+                    <div className="text-center text-white relative z-10">
+                      <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <svg
-                          className="w-8 h-8"
+                          className="w-10 h-10"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -187,11 +204,27 @@ const ProcessSection = () => {
                           {step.icon}
                         </svg>
                       </div>
-                      <div className="text-lg font-semibold">
+                      <div className="text-xl font-bold mb-2">
                         Step {step.step}
                       </div>
-                      <div className="text-sm opacity-90">{step.title}</div>
+                      <div className="text-sm opacity-90 font-medium">
+                        {step.title}
+                      </div>
+
+                      {/* Progress indicator */}
+                      <div className="mt-4 w-full bg-white/20 rounded-full h-2">
+                        <div
+                          className="bg-white h-2 rounded-full transition-all duration-1000"
+                          style={{
+                            width: `${(parseInt(step.step) / 6) * 100}%`,
+                          }}
+                        ></div>
+                      </div>
                     </div>
+
+                    {/* Floating decoration */}
+                    <div className="absolute top-4 right-4 w-6 h-6 bg-white/20 rounded-full animate-bounce-subtle"></div>
+                    <div className="absolute bottom-4 left-4 w-4 h-4 bg-white/30 rounded-full"></div>
                   </div>
                 </div>
               </div>
