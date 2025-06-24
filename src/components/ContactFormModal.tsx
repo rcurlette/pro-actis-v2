@@ -50,7 +50,7 @@ const ContactFormModal = ({
   if (isSubmitted) {
     return (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center my-auto">
           <div className="w-16 h-16 bg-proactis-success/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg
               className="w-8 h-8 text-proactis-success"
@@ -84,7 +84,7 @@ const ContactFormModal = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-2xl p-8 max-w-lg w-full max-h-[85vh] overflow-y-auto my-auto">
         <div className="flex justify-between items-start mb-6">
           <div>
             <h3 className="text-2xl font-bold text-proactis-dark mb-2">
