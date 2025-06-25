@@ -14,6 +14,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_FLAGS = "--prefix=/opt/buildhome/.cache/npm"
 
 # Form settings
 [forms]
