@@ -76,6 +76,9 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
       performance: 89,
       meetingsScheduled: 8,
       clientSatisfaction: 96,
+      noShows: 2,
+      avgMeetingDuration: "45min",
+      timeSaved: "12hrs",
       lastActivity: "2 hours ago",
       trend: "up",
       color: "green",
@@ -113,6 +116,18 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
       priority: "medium",
       dueDate: "Tomorrow",
     },
+    {
+      id: 6,
+      task: "Optimize Upmeet meeting templates",
+      priority: "low",
+      dueDate: "This week",
+    },
+    {
+      id: 7,
+      task: "Set up Upmeet automated reminders",
+      priority: "high",
+      dueDate: "Today",
+    },
   ];
 
   const keywordAlerts = [
@@ -135,6 +150,18 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
       count: 9,
       urgency: "medium",
       tool: "Teams",
+    },
+    {
+      keyword: "client consultation",
+      count: 14,
+      urgency: "high",
+      tool: "Upmeet",
+    },
+    {
+      keyword: "meeting rescheduling",
+      count: 7,
+      urgency: "medium",
+      tool: "Upmeet",
     },
   ];
 
@@ -164,9 +191,21 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
       status: "success",
     },
     {
-      time: "6 hours ago",
+      time: "5 hours ago",
       action: "Upmeet optimized meeting scheduling",
       impact: "Saved 2 hours admin time",
+      status: "success",
+    },
+    {
+      time: "1 hour ago",
+      action: "Upmeet automated client follow-up reminders",
+      impact: "100% meeting attendance rate",
+      status: "success",
+    },
+    {
+      time: "3 hours ago",
+      action: "Upmeet analyzed meeting patterns",
+      impact: "Identified optimal meeting times",
       status: "success",
     },
   ];
@@ -348,6 +387,51 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
                 <p className="text-sm text-proactis-success mt-2">
                   All systems operational
                 </p>
+              </div>
+            </div>
+
+            {/* Upmeet Highlight Card */}
+            <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-6 border border-green-200 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                    U
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-proactis-dark">
+                      Upmeet Performance Spotlight
+                    </h3>
+                    <p className="text-sm text-green-700">
+                      Meeting optimization & client satisfaction leader
+                    </p>
+                  </div>
+                </div>
+                <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  89% Performance
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">8</div>
+                  <div className="text-xs text-green-700">
+                    Meetings Scheduled
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">96%</div>
+                  <div className="text-xs text-green-700">
+                    Client Satisfaction
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">12h</div>
+                  <div className="text-xs text-green-700">Time Saved</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">45min</div>
+                  <div className="text-xs text-green-700">Avg Duration</div>
+                </div>
               </div>
             </div>
 
@@ -555,6 +639,26 @@ const Dashboard = ({ userEmail }: DashboardProps) => {
                         </p>
                         <p className="font-semibold text-proactis-dark">
                           {tool.connections}
+                        </p>
+                      </div>
+                    )}
+                    {tool.meetingsScheduled && (
+                      <div>
+                        <p className="text-xs text-proactis-gray-600">
+                          Meetings
+                        </p>
+                        <p className="font-semibold text-proactis-dark">
+                          {tool.meetingsScheduled}
+                        </p>
+                      </div>
+                    )}
+                    {tool.clientSatisfaction && (
+                      <div>
+                        <p className="text-xs text-proactis-gray-600">
+                          Satisfaction
+                        </p>
+                        <p className="font-semibold text-proactis-dark">
+                          {tool.clientSatisfaction}%
                         </p>
                       </div>
                     )}
