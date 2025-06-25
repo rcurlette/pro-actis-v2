@@ -27,7 +27,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-xl text-proactis-gray-600 mb-8 text-pretty leading-relaxed">
-              Pro-Actis helps lawyers and legal advisors discover, implement,
+              Pro-Actis AI helps lawyers and legal advisors discover, implement,
               and master AI solutions that generate leads, analyze data, monitor
               client accounts, and protect innovations - all while preventing
               contract management risks.
