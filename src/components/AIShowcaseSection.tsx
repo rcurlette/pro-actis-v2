@@ -245,8 +245,8 @@ const AIShowcaseSection = () => {
       </div>
 
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-proactis-primary/10 to-transparent pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-proactis-secondary/5 to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-proactis-primary/10 to-transparent pointer-events-none"></div>
 
       {/* Contact Form Modal */}
       <ContactFormModal
