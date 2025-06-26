@@ -691,7 +691,7 @@ export const getQualificationMessage = (
   urgency: "low" | "medium" | "high";
 } => {
   switch (qualification) {
-    case "low":
+    case "high":
       return {
         title: "High Priority: Immediate AI Implementation Needed",
         message:
@@ -705,11 +705,11 @@ export const getQualificationMessage = (
           "You have a solid foundation but need strategic guidance to optimize your AI implementation. Pro-Actis can help you accelerate adoption and maximize ROI from your AI investments.",
         urgency: "medium",
       };
-    case "high":
+    case "low":
       return {
-        title: "Advanced Optimization: Maximize Your AI Leadership",
+        title: "Low Priority: Content Nurturing & Advanced Optimization",
         message:
-          "Your firm is well-positioned in AI adoption. Pro-Actis can help you fine-tune your systems, explore advanced tools, and maintain your competitive advantage in the market.",
+          "Your firm is well-positioned in AI adoption. Pro-Actis can help you fine-tune your systems, explore advanced tools, and maintain your competitive advantage in the market through ongoing content and optimization.",
         urgency: "low",
       };
   }
