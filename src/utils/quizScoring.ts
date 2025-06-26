@@ -583,7 +583,7 @@ const generateRecommendations = (
 ): string[] => {
   const recommendations: string[] = [];
 
-  if (qualification === "low") {
+  if (qualification === "high") {
     recommendations.push(
       "Immediate AI strategy development is critical to maintain competitive positioning",
       "Start with basic AI tools like document automation and client communication",
