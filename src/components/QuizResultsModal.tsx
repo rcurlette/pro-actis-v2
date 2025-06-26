@@ -154,7 +154,7 @@ const QuizResultsModal = ({
       );
       submitData.append(
         "bookingLink",
-        "https://calendly.com/pro-actis/discovery-call",
+        "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
       );
 
       // Convert PDF data URI to blob and attach
