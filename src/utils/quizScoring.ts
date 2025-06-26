@@ -672,7 +672,7 @@ const generateImprovements = (
   }
 
   // Add qualification-specific improvements
-  if (qualification === "low") {
+  if (qualification === "high") {
     improvements.push("Fundamental AI strategy development");
     improvements.push("Basic AI tool implementation and change management");
   } else if (qualification === "medium") {
