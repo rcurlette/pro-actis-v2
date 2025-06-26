@@ -545,11 +545,11 @@ export const calculateQuizScore = (answers: QuizAnswer[]): QuizResult => {
       3,
   );
 
-  // Determine qualification level
+  // Determine qualification level (reversed: lower scores = higher priority for Pro-Actis services)
   let qualification: "high" | "medium" | "low";
-  if (overallScore >= 70) {
+  if (overallScore <= 39) {
     qualification = "high";
-  } else if (overallScore >= 40) {
+  } else if (overallScore <= 69) {
     qualification = "medium";
   } else {
     qualification = "low";
