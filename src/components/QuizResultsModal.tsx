@@ -571,7 +571,7 @@ const QuizResultsModal = ({
                   <Button
                     onClick={handleDownloadPDF}
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-proactis-primary flex items-center"
+                    className="border-white text-proactis-primary bg-white hover:bg-gray-100 hover:text-proactis-primary flex items-center"
                   >
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
