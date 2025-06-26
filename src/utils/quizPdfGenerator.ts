@@ -291,7 +291,7 @@ export const generateQuizPDF = (data: QuizPdfData): string => {
   pdf.setTextColor(...primaryBlue);
   pdf.setFont("helvetica", "normal");
   pdf.text(
-    "https://calendly.com/pro-actis/discovery-call",
+    "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
     margin + 5,
     yPosition,
   );
