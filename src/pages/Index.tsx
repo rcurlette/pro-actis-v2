@@ -21,6 +21,7 @@ const Index = () => {
         <PartnersSection />
         <TestimonialsSection />
         <AIShowcaseSection />
+        <QuizCTA />
         <DashboardCTA />
       </main>
       <Footer />
