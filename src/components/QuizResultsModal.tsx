@@ -579,7 +579,7 @@ const QuizResultsModal = ({
                   <Button
                     onClick={() =>
                       window.open(
-                        "https://calendly.com/pro-actis/discovery-call",
+                        "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
                         "_blank",
                       )
                     }
