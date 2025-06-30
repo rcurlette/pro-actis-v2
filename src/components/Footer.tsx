@@ -72,7 +72,8 @@ const Footer = () => {
               </Button>
             </div>
 
-            {/* Contact methods */}
+            {/* Contact methods - Temporarily commented out */}
+            {/*
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-proactis-gray-600">
               <div className="text-center">
                 <div className="w-12 h-12 bg-proactis-primary/20 rounded-lg flex items-center justify-center mx-auto mb-3">
@@ -140,6 +141,7 @@ const Footer = () => {
                 </p>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>
