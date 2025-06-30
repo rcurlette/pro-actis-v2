@@ -22,7 +22,7 @@
   [forms.settings]
     # Set up form notifications
     [forms.settings.notification]
-      recipients = ["contact@pro-actis.eu"]
+      recipients = ["sarafollador01@gmail.com"]
 
 # Headers for security
 [[headers]]
