@@ -176,7 +176,11 @@ const QuizResultsModal = ({
         });
         setShowEmailForm(false);
       } else {
-        throw new Error("Failed to send results");
+        const errorText = await response.text();
+        console.error("Netlify form submission error:", errorText);
+        throw new Error(
+          `Failed to send results: ${response.status} ${response.statusText}`,
+        );
       }
     } catch (error) {
       console.error("Error sending results:", error);
