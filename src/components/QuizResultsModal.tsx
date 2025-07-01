@@ -133,6 +133,7 @@ const QuizResultsModal = ({
       // Create form data for Netlify submission
       const submitData = new FormData();
       submitData.append("form-name", "ai-assessment-results");
+      submitData.append("bot-field", ""); // Honeypot field for spam protection
       submitData.append("firstName", formData.firstName);
       submitData.append("lastName", formData.lastName);
       submitData.append("email", formData.email);
