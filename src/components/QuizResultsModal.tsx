@@ -196,10 +196,26 @@ const QuizResultsModal = ({
       }
     } catch (error) {
       console.error("Error sending results:", error);
+
+      // Show more specific error message
+      let errorMessage =
+        "There was an issue sending your results. Please try again or contact us directly.";
+
+      if (error instanceof Error) {
+        if (error.message.includes("Failed to fetch")) {
+          errorMessage =
+            "Network error: Please check your internet connection and try again.";
+        } else if (error.message.includes("PDF")) {
+          errorMessage =
+            "PDF generation failed. Form data will be sent without the PDF attachment.";
+        } else {
+          errorMessage = `Error: ${error.message}`;
+        }
+      }
+
       toast({
         title: "Error Sending Results",
-        description:
-          "There was an issue sending your results. Please try again or contact us directly.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
