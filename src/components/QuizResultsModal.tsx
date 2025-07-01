@@ -241,6 +241,7 @@ const QuizResultsModal = ({
           <form
             name="ai-assessment-results"
             data-netlify="true"
+            data-netlify-honeypot="bot-field"
             className="space-y-6"
           >
             <input
@@ -248,6 +249,7 @@ const QuizResultsModal = ({
               name="form-name"
               value="ai-assessment-results"
             />
+            <input type="hidden" name="bot-field" />
 
             <div className="grid grid-cols-2 gap-4">
               <div>
