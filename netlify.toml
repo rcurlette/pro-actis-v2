@@ -17,12 +17,26 @@
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 # Form settings
-[forms]
-  # Enable form notifications
-  [forms.settings]
-    # Set up form notifications
-    [forms.settings.notification]
+[[form]]
+  name = "ai-assessment-results"
+  [form.settings]
+    [form.settings.notification]
       recipients = ["sarafollador01@gmail.com"]
+      subject = "New AI Assessment Results from Pro-Actis"
+
+[[form]]
+  name = "demo-request"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "New Demo Request from Pro-Actis"
+
+[[form]]
+  name = "info-request"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "New Info Request from Pro-Actis"
 
 # Headers for security
 [[headers]]
