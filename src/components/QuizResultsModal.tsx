@@ -150,30 +150,27 @@ const QuizResultsModal = ({
         "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
       );
 
-      // Try to generate and attach PDF (with error handling)
-      try {
-        const pdfData = generateQuizPDF({
-          userEmail: formData.email,
-          firmName: formData.firmName,
-          result,
-          completedAt: new Date(),
-        });
+      // Temporarily disable PDF attachment for testing
+      console.log("Skipping PDF generation for testing purposes");
 
-        if (pdfData) {
-          const pdfBlob = await fetch(pdfData).then((res) => res.blob());
-          const filename = generateQuizFilename(
-            formData.firmName,
-            formData.email,
-          );
-          submitData.append("assessment-report", pdfBlob, filename);
-        }
-      } catch (pdfError) {
-        console.warn(
-          "PDF generation failed, sending form without attachment:",
-          pdfError,
-        );
-        // Continue with form submission even if PDF fails
-      }
+      // TODO: Re-enable PDF generation once basic form submission works
+      // try {
+      //   const pdfData = generateQuizPDF({
+      //     userEmail: formData.email,
+      //     firmName: formData.firmName,
+      //     result,
+      //     completedAt: new Date(),
+      //   });
+
+      //   if (pdfData) {
+      //     const pdfBlob = await fetch(pdfData).then((res) => res.blob());
+      //     const filename = generateQuizFilename(formData.firmName, formData.email);
+      //     submitData.append("assessment-report", pdfBlob, filename);
+      //   }
+      // } catch (pdfError) {
+      //   console.warn("PDF generation failed, sending form without attachment:", pdfError);
+      //   // Continue with form submission even if PDF fails
+      // }
 
       const response = await fetch("/", {
         method: "POST",
