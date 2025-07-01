@@ -122,15 +122,7 @@ const QuizResultsModal = ({
     setIsSubmitting(true);
 
     try {
-      // Generate PDF
-      const pdfData = generateQuizPDF({
-        userEmail: formData.email,
-        firmName: formData.firmName,
-        result,
-        completedAt: new Date(),
-      });
-
-      // Create form data for Netlify submission
+      // Create form data for Netlify submission (without PDF for now to test)
       const submitData = new FormData();
       submitData.append("form-name", "ai-assessment-results");
       submitData.append("bot-field", ""); // Honeypot field for spam protection
@@ -138,7 +130,7 @@ const QuizResultsModal = ({
       submitData.append("lastName", formData.lastName);
       submitData.append("email", formData.email);
       submitData.append("firmName", formData.firmName);
-      submitData.append("message", formData.message);
+      submitData.append("message", formData.message || "");
       submitData.append("overallScore", result.overallScore.toString());
       submitData.append("qualification", result.qualification);
       submitData.append(
@@ -158,10 +150,30 @@ const QuizResultsModal = ({
         "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
       );
 
-      // Convert PDF data URI to blob and attach
-      const pdfBlob = await fetch(pdfData).then((res) => res.blob());
-      const filename = generateQuizFilename(formData.firmName, formData.email);
-      submitData.append("assessment-report", pdfBlob, filename);
+      // Try to generate and attach PDF (with error handling)
+      try {
+        const pdfData = generateQuizPDF({
+          userEmail: formData.email,
+          firmName: formData.firmName,
+          result,
+          completedAt: new Date(),
+        });
+
+        if (pdfData) {
+          const pdfBlob = await fetch(pdfData).then((res) => res.blob());
+          const filename = generateQuizFilename(
+            formData.firmName,
+            formData.email,
+          );
+          submitData.append("assessment-report", pdfBlob, filename);
+        }
+      } catch (pdfError) {
+        console.warn(
+          "PDF generation failed, sending form without attachment:",
+          pdfError,
+        );
+        // Continue with form submission even if PDF fails
+      }
 
       const response = await fetch("/", {
         method: "POST",
