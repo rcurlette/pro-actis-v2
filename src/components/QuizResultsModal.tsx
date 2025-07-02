@@ -280,6 +280,7 @@ const QuizResultsModal = ({
               value="ai-assessment-results"
             />
             <input type="hidden" name="bot-field" />
+            <input type="hidden" name="gdprConsent" />
 
             <div className="grid grid-cols-2 gap-4">
               <div>
