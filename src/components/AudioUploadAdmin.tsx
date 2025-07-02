@@ -283,6 +283,20 @@ const AudioUploadAdmin = () => {
       <div className="proactis-container max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
+          <div className="flex justify-between items-center mb-6">
+            <a
+              href="/publisher"
+              className="text-sm text-proactis-primary hover:text-proactis-dark transition-colors flex items-center"
+            >
+              ← Content Publisher
+            </a>
+            <a
+              href="/legal-audio"
+              className="text-sm text-proactis-gray-500 hover:text-proactis-primary transition-colors"
+            >
+              View Live Hub →
+            </a>
+          </div>
           <h1 className="text-4xl font-bold text-proactis-dark mb-4">
             Audio Content Management
           </h1>
