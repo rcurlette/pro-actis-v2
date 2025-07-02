@@ -120,17 +120,26 @@ const QuizResultsModal = ({
     }
 
     setIsSubmitting(true);
+    console.log("Starting form submission...");
+    console.log("Form data:", formData);
+    console.log("Assessment result:", result);
 
     try {
-      // Create form data for Netlify submission (without PDF for now to test)
+      // Create form data for Netlify submission
       const submitData = new FormData();
+
+      // Core form fields
       submitData.append("form-name", "ai-assessment-results");
       submitData.append("bot-field", ""); // Honeypot field for spam protection
-      submitData.append("firstName", formData.firstName);
-      submitData.append("lastName", formData.lastName);
-      submitData.append("email", formData.email);
-      submitData.append("firmName", formData.firmName);
-      submitData.append("message", formData.message || "");
+
+      // User information
+      submitData.append("firstName", formData.firstName.trim());
+      submitData.append("lastName", formData.lastName.trim());
+      submitData.append("email", formData.email.trim());
+      submitData.append("firmName", formData.firmName.trim());
+      submitData.append("message", formData.message?.trim() || "");
+
+      // Assessment scores
       submitData.append("overallScore", result.overallScore.toString());
       submitData.append("qualification", result.qualification);
       submitData.append(
@@ -149,46 +158,38 @@ const QuizResultsModal = ({
         "bookingLink",
         "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
       );
+      submitData.append("gdprConsent", formData.gdprConsent.toString());
 
-      // Temporarily disable PDF attachment for testing
-      console.log("Skipping PDF generation for testing purposes");
+      // Debug: Log all form data
+      console.log("Form data being submitted:");
+      for (let [key, value] of submitData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
 
-      // TODO: Re-enable PDF generation once basic form submission works
-      // try {
-      //   const pdfData = generateQuizPDF({
-      //     userEmail: formData.email,
-      //     firmName: formData.firmName,
-      //     result,
-      //     completedAt: new Date(),
-      //   });
-
-      //   if (pdfData) {
-      //     const pdfBlob = await fetch(pdfData).then((res) => res.blob());
-      //     const filename = generateQuizFilename(formData.firmName, formData.email);
-      //     submitData.append("assessment-report", pdfBlob, filename);
-      //   }
-      // } catch (pdfError) {
-      //   console.warn("PDF generation failed, sending form without attachment:", pdfError);
-      //   // Continue with form submission even if PDF fails
-      // }
+      console.log("Submitting to Netlify...");
 
       const response = await fetch("/", {
         method: "POST",
         body: submitData,
       });
 
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers);
+
       if (response.ok) {
+        console.log("Form submitted successfully!");
         toast({
           title: "Results Sent Successfully!",
           description:
-            "Your assessment report has been sent to your email. Check your inbox for the detailed analysis and next steps.",
+            "Your assessment report has been sent to sarafollador01@gmail.com. Check your inbox for the detailed analysis and next steps.",
         });
         setShowEmailForm(false);
       } else {
         const errorText = await response.text();
         console.error("Netlify form submission error:", errorText);
+        console.error("Response status:", response.status, response.statusText);
         throw new Error(
-          `Failed to send results: ${response.status} ${response.statusText}`,
+          `Failed to send results: ${response.status} ${response.statusText}. Error: ${errorText}`,
         );
       }
     } catch (error) {
