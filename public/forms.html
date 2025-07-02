@@ -68,5 +68,17 @@
       <input type="text" name="source" />
       <input name="bot-field" />
     </form>
+
+    <!-- Audio Upload Form for Netlify detection -->
+    <form name="audio-upload" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="title" />
+      <textarea name="description"></textarea>
+      <input type="text" name="category" />
+      <input type="text" name="duration" />
+      <textarea name="transcript"></textarea>
+      <input type="file" name="audio-file" />
+      <input type="file" name="image-file" />
+      <input name="bot-field" />
+    </form>
   </body>
 </html>
