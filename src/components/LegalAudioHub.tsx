@@ -242,10 +242,10 @@ const LegalAudioHub = () => {
         <div className="text-center mb-16">
           <div className="flex justify-end mb-4">
             <a
-              href="/audio-admin"
+              href="/publisher"
               className="text-sm text-proactis-gray-500 hover:text-proactis-primary transition-colors"
             >
-              Content Management →
+              Content Publisher →
             </a>
           </div>
           <h2 className="text-4xl font-bold text-proactis-dark mb-4">
