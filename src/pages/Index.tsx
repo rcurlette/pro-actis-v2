@@ -27,6 +27,7 @@ const Index = () => {
       </main>
       <Footer />
       <CookieConsent />
+      <FormTestButton />
     </div>
   );
 };
