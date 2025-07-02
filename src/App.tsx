@@ -29,6 +29,8 @@ const App = () => (
           <Route path="/legal-audio" element={<LegalAudio />} />
           <Route path="/audio-admin" element={<AudioAdmin />} />
           <Route path="/publisher" element={<Publisher />} />
+          <Route path="/content-generator" element={<ContentGenerator />} />
+          <Route path="/api-config" element={<APIConfig />} />
           <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
