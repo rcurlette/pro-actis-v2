@@ -249,10 +249,10 @@ const Footer = () => {
               Cookie Policy
             </a>
             <a
-              href="/audio-admin"
+              href="/publisher"
               className="text-proactis-gray-400 hover:text-proactis-gold text-sm transition-colors"
             >
-              Admin
+              Publisher
             </a>
           </div>
         </div>
