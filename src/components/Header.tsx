@@ -17,6 +17,7 @@ const Header = () => {
     { label: "Process", href: "#process" },
     { label: "Partners", href: "#partners" },
     { label: "Assessment", href: "/assessment" },
+    { label: "Legal Audio", href: "/legal-audio" },
     { label: "Dashboard", href: "/dashboard" },
     { label: "Contact", href: "#contact" },
   ];
