@@ -361,6 +361,14 @@ Contact: https://pro-actis.com
       <div className="proactis-container max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
+          <div className="flex justify-end mb-4">
+            <a
+              href="/api-config"
+              className="text-sm text-proactis-gray-500 hover:text-proactis-primary transition-colors"
+            >
+              API Configuration →
+            </a>
+          </div>
           <h1 className="text-4xl font-bold text-proactis-dark mb-4">
             <Lightbulb className="w-10 h-10 text-proactis-primary inline mr-3" />
             AI Content Idea Generator
