@@ -18,6 +18,7 @@ const Header = () => {
     { label: "Partners", href: "#partners" },
     { label: "Assessment", href: "/assessment" },
     { label: "Legal Audio", href: "/legal-audio" },
+    { label: "Content Ideas", href: "/content-generator" },
     { label: "Dashboard", href: "/dashboard" },
     { label: "Contact", href: "#contact" },
   ];
