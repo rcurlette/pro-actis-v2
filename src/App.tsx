@@ -8,6 +8,7 @@ import DashboardPage from "./pages/DashboardPage";
 import Assessment from "./pages/Assessment";
 import LegalAudio from "./pages/LegalAudio";
 import AudioAdmin from "./pages/AudioAdmin";
+import Publisher from "./pages/Publisher";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
