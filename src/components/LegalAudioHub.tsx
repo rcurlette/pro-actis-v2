@@ -45,6 +45,9 @@ interface Comment {
 const LegalAudioHub = () => {
   const [currentPlaying, setCurrentPlaying] = useState<string | null>(null);
   const [showComments, setShowComments] = useState<string | null>(null);
+  const [showLinkedInGenerator, setShowLinkedInGenerator] = useState<
+    string | null
+  >(null);
   const [comments, setComments] = useState<Comment[]>([
     {
       id: "1",
