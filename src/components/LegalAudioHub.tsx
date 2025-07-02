@@ -181,13 +181,54 @@ const LegalAudioHub = () => {
       return;
     }
 
-    // In real app, this would submit to a notification service
-    setIsSubscribed(true);
+    // Check if we're in development mode
+    const isDevelopment =
+      window.location.hostname === "localhost" ||
+      window.location.hostname.includes("fly.dev") ||
+      window.location.hostname.includes("127.0.0.1");
 
-    toast({
-      title: "Subscription Successful!",
-      description: "You'll receive notifications about new legal AI content.",
-    });
+    if (isDevelopment) {
+      // Simulate successful subscription in development
+      setIsSubscribed(true);
+      toast({
+        title: "✅ Development Mode - Simulation Complete",
+        description:
+          "Newsletter subscription simulated. Deploy to Netlify to enable real email notifications.",
+      });
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("form-name", "newsletter-subscription");
+      formData.append("bot-field", "");
+      formData.append("email", notificationEmail.trim());
+      formData.append("source", "Legal Audio Hub");
+
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setIsSubscribed(true);
+        toast({
+          title: "Subscription Successful!",
+          description:
+            "You'll receive notifications about new legal AI content at " +
+            notificationEmail,
+        });
+      } else {
+        throw new Error("Subscription failed");
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast({
+        title: "Subscription Error",
+        description: "Unable to subscribe right now. Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getCommentsForAudio = (audioId: string) => {
