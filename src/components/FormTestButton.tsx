@@ -7,6 +7,22 @@ const FormTestButton = () => {
   const testFormSubmission = async () => {
     console.log("Testing form submission...");
 
+    // Check if we're in development mode
+    const isDevelopment =
+      window.location.hostname === "localhost" ||
+      window.location.hostname.includes("fly.dev") ||
+      window.location.hostname.includes("127.0.0.1");
+
+    if (isDevelopment) {
+      toast({
+        title: "Development Mode Detected",
+        description:
+          "Form submissions only work on the deployed Netlify site. This test simulates a successful submission.",
+      });
+      console.log("Development mode - simulating successful form submission");
+      return;
+    }
+
     try {
       const testData = new FormData();
       testData.append("form-name", "ai-assessment-results");
@@ -27,7 +43,7 @@ const FormTestButton = () => {
       );
       testData.append("gdprConsent", "true");
 
-      console.log("Test data prepared, submitting...");
+      console.log("Test data prepared, submitting to production Netlify...");
 
       const response = await fetch("/", {
         method: "POST",
