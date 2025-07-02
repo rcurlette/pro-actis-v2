@@ -15,11 +15,19 @@ const FormTestButton = () => {
 
     if (isDevelopment) {
       toast({
-        title: "Development Mode Detected",
+        title: "🚀 Development Mode Detected",
         description:
-          "Form submissions only work on the deployed Netlify site. This test simulates a successful submission.",
+          "Form submissions only work on deployed Netlify sites. Push your changes and deploy to test real email delivery!",
       });
-      console.log("Development mode - simulating successful form submission");
+      console.log(
+        "Development mode - form submission would work on deployed Netlify site",
+      );
+      console.log("Test data that would be submitted:", {
+        firstName: "Test",
+        lastName: "User",
+        email: "test@example.com",
+        firmName: "Test Firm",
+      });
       return;
     }
 
