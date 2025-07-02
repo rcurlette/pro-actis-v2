@@ -240,6 +240,14 @@ const LegalAudioHub = () => {
       <div className="proactis-container">
         {/* Header */}
         <div className="text-center mb-16">
+          <div className="flex justify-end mb-4">
+            <a
+              href="/audio-admin"
+              className="text-sm text-proactis-gray-500 hover:text-proactis-primary transition-colors"
+            >
+              Content Management →
+            </a>
+          </div>
           <h2 className="text-4xl font-bold text-proactis-dark mb-4">
             Legal AI Insights Hub
           </h2>
