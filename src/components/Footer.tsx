@@ -231,7 +231,7 @@ const Footer = () => {
           </p>
           <div className="flex space-x-6 mt-4 lg:mt-0">
             <a
-              href="#"
+              href="/privacy"
               className="text-proactis-gray-300 hover:text-white text-sm transition-colors"
             >
               Privacy Policy
@@ -247,6 +247,13 @@ const Footer = () => {
               className="text-proactis-gray-300 hover:text-white text-sm transition-colors"
             >
               Cookie Policy
+            </a>
+            <a
+              href="/audio-admin"
+              className="text-proactis-gray-400 hover:text-proactis-gold text-sm transition-colors"
+            >
+              Admin
+            </a>
             </a>
           </div>
         </div>
