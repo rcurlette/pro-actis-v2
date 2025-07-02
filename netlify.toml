@@ -52,6 +52,20 @@
       recipients = ["sarafollador01@gmail.com"]
       subject = "New Audio Content Upload from Pro-Actis"
 
+[[form]]
+  name = "content-ideas-email"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "New Content Ideas Request from Pro-Actis"
+
+[[form]]
+  name = "linkedin-posts-email"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "New LinkedIn Posts Request from Pro-Actis"
+
 # Headers for security
 [[headers]]
   for = "/*"
