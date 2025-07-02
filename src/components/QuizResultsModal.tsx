@@ -176,6 +176,10 @@ const QuizResultsModal = ({
       console.log("Response status:", response.status);
       console.log("Response headers:", response.headers);
 
+      // Read response text first to avoid stream consumption issues
+      const responseText = await response.text();
+      console.log("Response body:", responseText);
+
       if (response.ok) {
         console.log("Form submitted successfully!");
         toast({
@@ -185,11 +189,10 @@ const QuizResultsModal = ({
         });
         setShowEmailForm(false);
       } else {
-        const errorText = await response.text();
-        console.error("Netlify form submission error:", errorText);
+        console.error("Netlify form submission error:", responseText);
         console.error("Response status:", response.status, response.statusText);
         throw new Error(
-          `Failed to send results: ${response.status} ${response.statusText}. Error: ${errorText}`,
+          `Failed to send results: ${response.status} ${response.statusText}. Error: ${responseText}`,
         );
       }
     } catch (error) {
