@@ -483,6 +483,17 @@ const LegalAudioHub = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* LinkedIn Post Generator Modal */}
+        {showLinkedInGenerator && (
+          <LinkedInPostGenerator
+            audioContent={
+              audioContent.find((c) => c.id === showLinkedInGenerator)!
+            }
+            isOpen={!!showLinkedInGenerator}
+            onClose={() => setShowLinkedInGenerator(null)}
+          />
+        )}
       </div>
     </section>
   );
