@@ -9,6 +9,8 @@ import Assessment from "./pages/Assessment";
 import LegalAudio from "./pages/LegalAudio";
 import AudioAdmin from "./pages/AudioAdmin";
 import Publisher from "./pages/Publisher";
+import ContentGenerator from "./pages/ContentGenerator";
+import APIConfig from "./pages/APIConfig";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
