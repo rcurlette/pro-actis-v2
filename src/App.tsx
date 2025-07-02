@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import DashboardPage from "./pages/DashboardPage";
 import Assessment from "./pages/Assessment";
+import LegalAudio from "./pages/LegalAudio";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
