@@ -10,7 +10,6 @@ import LegalAudioCTA from "@/components/LegalAudioCTA";
 import DashboardCTA from "@/components/DashboardCTA";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
-import FormTestButton from "@/components/FormTestButton";
 
 const Index = () => {
   return (
