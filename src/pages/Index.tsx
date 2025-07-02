@@ -24,6 +24,7 @@ const Index = () => {
         <TestimonialsSection />
         <AIShowcaseSection />
         <QuizCTA />
+        <LegalAudioCTA />
         <DashboardCTA />
       </main>
       <Footer />
