@@ -38,6 +38,13 @@
       recipients = ["sarafollador01@gmail.com"]
       subject = "New Info Request from Pro-Actis"
 
+[[form]]
+  name = "newsletter-subscription"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "New Newsletter Subscription from Pro-Actis"
+
 # Headers for security
 [[headers]]
   for = "/*"
