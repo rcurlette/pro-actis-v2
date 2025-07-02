@@ -366,10 +366,19 @@ const LegalAudioHub = () => {
                       </span>
                     </button>
                   </div>
-                  <button className="flex items-center text-proactis-gray-500 hover:text-proactis-primary transition-colors">
-                    <Share2 className="w-4 h-4 mr-1" />
-                    <span className="text-sm">Share</span>
-                  </button>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setShowLinkedInGenerator(content.id)}
+                      className="flex items-center text-proactis-gray-500 hover:text-blue-600 transition-colors"
+                    >
+                      <Lightbulb className="w-4 h-4 mr-1" />
+                      <span className="text-sm">LinkedIn Ideas</span>
+                    </button>
+                    <button className="flex items-center text-proactis-gray-500 hover:text-proactis-primary transition-colors">
+                      <Share2 className="w-4 h-4 mr-1" />
+                      <span className="text-sm">Share</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Comments Section */}
