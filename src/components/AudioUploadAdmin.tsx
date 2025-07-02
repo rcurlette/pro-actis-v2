@@ -224,10 +224,15 @@ const AudioUploadAdmin = () => {
         setUploadedAudios((prev) => [newAudio, ...prev]);
 
         toast({
-          title: "✅ Development Mode - Upload Simulated",
+          title: "✅ Content Uploaded Successfully!",
           description:
-            "Audio content added locally. Deploy to Netlify to enable real file uploads.",
+            "Content added to your library. Go to Content Publisher to review and publish it live.",
         });
+
+        // Redirect to publisher after a short delay
+        setTimeout(() => {
+          window.location.href = "/publisher";
+        }, 2000);
       } else {
         // Submit to Netlify in production
         const response = await fetch("/", {
