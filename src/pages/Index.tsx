@@ -9,6 +9,7 @@ import QuizCTA from "@/components/QuizCTA";
 import DashboardCTA from "@/components/DashboardCTA";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import FormTestButton from "@/components/FormTestButton";
 
 const Index = () => {
   return (
