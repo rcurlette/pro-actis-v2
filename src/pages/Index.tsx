@@ -6,6 +6,7 @@ import PartnersSection from "@/components/PartnersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AIShowcaseSection from "@/components/AIShowcaseSection";
 import QuizCTA from "@/components/QuizCTA";
+import LegalAudioCTA from "@/components/LegalAudioCTA";
 import DashboardCTA from "@/components/DashboardCTA";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
