@@ -254,7 +254,6 @@ const Footer = () => {
             >
               Admin
             </a>
-            </a>
           </div>
         </div>
       </div>
