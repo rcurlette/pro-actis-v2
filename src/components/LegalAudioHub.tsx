@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import LinkedInPostGenerator from "./LinkedInPostGenerator";
 import {
   Play,
   Pause,
@@ -16,6 +17,7 @@ import {
   User,
   Heart,
   Share2,
+  Lightbulb,
 } from "lucide-react";
 
 interface AudioContent {
