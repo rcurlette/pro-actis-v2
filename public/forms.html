@@ -80,5 +80,38 @@
       <input type="file" name="image-file" />
       <input name="bot-field" />
     </form>
+
+    <!-- Content Ideas Email Form for Netlify detection -->
+    <form
+      name="content-ideas-email"
+      netlify
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="firmName" />
+      <input type="text" name="topic" />
+      <input type="text" name="practiceArea" />
+      <textarea name="contentIdeas"></textarea>
+      <input type="text" name="timestamp" />
+      <input name="bot-field" />
+    </form>
+
+    <!-- LinkedIn Posts Email Form for Netlify detection -->
+    <form
+      name="linkedin-posts-email"
+      netlify
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="audioTitle" />
+      <input type="text" name="audioCategory" />
+      <textarea name="linkedinPosts"></textarea>
+      <input type="text" name="timestamp" />
+      <input name="bot-field" />
+    </form>
   </body>
 </html>
