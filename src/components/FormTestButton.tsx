@@ -35,6 +35,11 @@ const FormTestButton = () => {
       });
 
       console.log("Test response status:", response.status);
+      console.log("Test response ok:", response.ok);
+
+      // Read the response text first, before checking status
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
 
       if (response.ok) {
         toast({
@@ -43,11 +48,11 @@ const FormTestButton = () => {
             "Form submission test passed. Check sarafollador01@gmail.com for the test email.",
         });
       } else {
-        const errorText = await response.text();
-        console.error("Test failed:", errorText);
+        console.error("Test failed with status:", response.status);
+        console.error("Error response:", responseText);
         toast({
           title: "Test Failed",
-          description: `Status: ${response.status}. Check console for details.`,
+          description: `Status: ${response.status}. Error: ${responseText.substring(0, 100)}...`,
           variant: "destructive",
         });
       }
