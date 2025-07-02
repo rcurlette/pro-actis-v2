@@ -134,9 +134,9 @@ const QuizResultsModal = ({
       // Simulate successful submission in development
       setTimeout(() => {
         toast({
-          title: "Development Mode - Simulated Success",
+          title: "✅ Development Mode - Simulation Complete",
           description:
-            "Form submission simulated. Deploy to Netlify to test real email delivery.",
+            "Your form data looks good! Deploy to Netlify to enable real email delivery to sarafollador01@gmail.com",
         });
         setShowEmailForm(false);
         setIsSubmitting(false);
