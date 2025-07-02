@@ -124,6 +124,26 @@ const QuizResultsModal = ({
     console.log("Form data:", formData);
     console.log("Assessment result:", result);
 
+    // Check if we're in development mode
+    const isDevelopment =
+      window.location.hostname === "localhost" ||
+      window.location.hostname.includes("fly.dev") ||
+      window.location.hostname.includes("127.0.0.1");
+
+    if (isDevelopment) {
+      // Simulate successful submission in development
+      setTimeout(() => {
+        toast({
+          title: "Development Mode - Simulated Success",
+          description:
+            "Form submission simulated. Deploy to Netlify to test real email delivery.",
+        });
+        setShowEmailForm(false);
+        setIsSubmitting(false);
+      }, 1000);
+      return;
+    }
+
     try {
       // Create form data for Netlify submission
       const submitData = new FormData();
