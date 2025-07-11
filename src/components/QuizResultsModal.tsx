@@ -150,74 +150,88 @@ const QuizResultsModal = ({
     }
 
     try {
-      // Create form data for Netlify submission
-      const submitData = new FormData();
+      // Prepare email data
+      const emailData: AssessmentEmailData = {
+        userEmail: formData.email.trim(),
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        firmName: formData.firmName.trim(),
+        result,
+        completedAt: new Date(),
+      };
 
-      // Core form fields
-      submitData.append("form-name", "ai-assessment-results");
-      submitData.append("bot-field", ""); // Honeypot field for spam protection
+      // Generate HTML emails for both admin and user
+      const adminEmailHTML = generateAssessmentEmailHTML(emailData, true);
+      const userEmailHTML = generateAssessmentEmailHTML(emailData, false);
+      const adminEmailText = generateAssessmentEmailText(emailData, true);
+      const userEmailText = generateAssessmentEmailText(emailData, false);
 
-      // User information
-      submitData.append("firstName", formData.firstName.trim());
-      submitData.append("lastName", formData.lastName.trim());
-      submitData.append("email", formData.email.trim());
-      submitData.append("firmName", formData.firmName.trim());
-      submitData.append("message", formData.message?.trim() || "");
-
-      // Assessment scores
-      submitData.append("overallScore", result.overallScore.toString());
-      submitData.append("qualification", result.qualification);
-      submitData.append(
-        "clientAIScore",
-        result.categoryScores.client_ai.toString(),
+      // Create form data for admin email
+      const adminFormData = new FormData();
+      adminFormData.append("form-name", "ai-assessment-admin");
+      adminFormData.append("bot-field", "");
+      adminFormData.append("to", "sarafollador01@gmail.com");
+      adminFormData.append(
+        "subject",
+        `New AI Assessment: ${formData.firstName} ${formData.lastName} - ${result.qualification.toUpperCase()} Priority`,
       );
-      submitData.append(
-        "personalAIScore",
-        result.categoryScores.personal_ai.toString(),
+      adminFormData.append("html", adminEmailHTML);
+      adminFormData.append("text", adminEmailText);
+      adminFormData.append("firstName", formData.firstName.trim());
+      adminFormData.append("lastName", formData.lastName.trim());
+      adminFormData.append("email", formData.email.trim());
+      adminFormData.append("firmName", formData.firmName.trim());
+      adminFormData.append("overallScore", result.overallScore.toString());
+      adminFormData.append("qualification", result.qualification);
+      adminFormData.append("gdprConsent", formData.gdprConsent.toString());
+
+      // Create form data for user email
+      const userFormData = new FormData();
+      userFormData.append("form-name", "ai-assessment-user");
+      userFormData.append("bot-field", "");
+      userFormData.append("to", formData.email.trim());
+      userFormData.append(
+        "subject",
+        `Your AI Readiness Assessment Results - ${result.overallScore}% Score`,
       );
-      submitData.append(
-        "readinessScore",
-        result.categoryScores.readiness.toString(),
+      userFormData.append("html", userEmailHTML);
+      userFormData.append("text", userEmailText);
+      userFormData.append("firstName", formData.firstName.trim());
+      userFormData.append("lastName", formData.lastName.trim());
+      userFormData.append("firmName", formData.firmName.trim());
+
+      console.log("Submitting assessment emails...");
+
+      // Submit both forms
+      const [adminResponse, userResponse] = await Promise.all([
+        fetch("/", { method: "POST", body: adminFormData }),
+        fetch("/", { method: "POST", body: userFormData }),
+      ]);
+
+      const adminResponseText = await adminResponse.text();
+      const userResponseText = await userResponse.text();
+
+      console.log(
+        "Admin email response:",
+        adminResponse.status,
+        adminResponseText,
       );
-      submitData.append(
-        "bookingLink",
-        "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+      console.log(
+        "User email response:",
+        userResponse.status,
+        userResponseText,
       );
-      submitData.append("gdprConsent", formData.gdprConsent.toString());
 
-      // Debug: Log all form data
-      console.log("Form data being submitted:");
-      for (let [key, value] of submitData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-
-      console.log("Submitting to Netlify...");
-
-      const response = await fetch("/", {
-        method: "POST",
-        body: submitData,
-      });
-
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
-
-      // Read response text first to avoid stream consumption issues
-      const responseText = await response.text();
-      console.log("Response body:", responseText);
-
-      if (response.ok) {
-        console.log("Form submitted successfully!");
+      if (adminResponse.ok && userResponse.ok) {
+        console.log("Both emails submitted successfully!");
         toast({
-          title: "Results Sent Successfully!",
-          description:
-            "Your assessment report has been sent to sarafollador01@gmail.com. Check your inbox for the detailed analysis and next steps.",
+          title: "Assessment Complete!",
+          description: `Results sent to both you (${formData.email}) and our team. Check your inbox for the detailed analysis and next steps.`,
         });
         setShowEmailForm(false);
       } else {
-        console.error("Netlify form submission error:", responseText);
-        console.error("Response status:", response.status, response.statusText);
         throw new Error(
-          `Failed to send results: ${response.status} ${response.statusText}. Error: ${responseText}`,
+          `Email sending failed. Admin: ${adminResponse.status}, User: ${userResponse.status}`,
         );
       }
     } catch (error) {
