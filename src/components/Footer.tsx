@@ -59,7 +59,12 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 className="bg-proactis-primary hover:bg-proactis-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-lg"
-                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+                onClick={() =>
+                  window.open(
+                    "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                    "_blank",
+                  )
+                }
               >
                 Book Your Complimentary Exploring Video Call
               </Button>
