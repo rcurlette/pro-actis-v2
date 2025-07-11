@@ -75,7 +75,12 @@ const Header = () => {
             </Button>
             <Button
               className="proactis-button-primary"
-              onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+              onClick={() =>
+                window.open(
+                  "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                  "_blank",
+                )
+              }
             >
               Book Free Call
             </Button>
