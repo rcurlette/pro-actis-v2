@@ -200,7 +200,12 @@ const ProcessSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 className="proactis-button-primary"
-                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+                onClick={() =>
+                  window.open(
+                    "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                    "_blank",
+                  )
+                }
               >
                 Book Your Complimentary Exploring Video Call
               </button>
