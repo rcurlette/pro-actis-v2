@@ -22,6 +22,11 @@ import {
   generateQuizFilename,
 } from "@/utils/quizPdfGenerator";
 import {
+  generateAssessmentEmailHTML,
+  generateAssessmentEmailText,
+  AssessmentEmailData,
+} from "@/utils/assessmentEmailTemplate";
+import {
   BarChart3,
   TrendingUp,
   AlertTriangle,
