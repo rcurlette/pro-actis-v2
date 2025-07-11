@@ -145,7 +145,10 @@ const Header = () => {
                 <Button
                   className="proactis-button-primary justify-start"
                   onClick={() => {
-                    setContactModal({ isOpen: true, type: "demo" });
+                    window.open(
+                      "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                      "_blank",
+                    );
                     setIsMenuOpen(false);
                   }}
                 >
