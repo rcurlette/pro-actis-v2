@@ -191,7 +191,10 @@ const SolutionsSection = () => {
                 <button
                   className="bg-white text-proactis-primary px-8 py-4 rounded-lg font-semibold hover:bg-proactis-gray-50 transition-all group"
                   onClick={() =>
-                    setContactModal({ isOpen: true, type: "demo" })
+                    window.open(
+                      "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                      "_blank",
+                    )
                   }
                 >
                   Book Your Complimentary Call
