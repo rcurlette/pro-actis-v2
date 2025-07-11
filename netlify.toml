@@ -18,11 +18,18 @@
 
 # Form settings
 [[form]]
-  name = "ai-assessment-results"
+  name = "ai-assessment-admin"
   [form.settings]
     [form.settings.notification]
       recipients = ["sarafollador01@gmail.com"]
-      subject = "New AI Assessment Results from Pro-Actis"
+      subject = "New AI Assessment Completed - Pro-Actis"
+
+[[form]]
+  name = "ai-assessment-user"
+  [form.settings]
+    [form.settings.notification]
+      recipients = ["sarafollador01@gmail.com"]
+      subject = "AI Assessment Results Sent to User - Pro-Actis"
 
 [[form]]
   name = "demo-request"
