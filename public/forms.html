@@ -35,25 +35,36 @@
       <input name="bot-field" />
     </form>
 
-    <!-- AI Assessment Results Form for Netlify detection -->
+    <!-- AI Assessment Admin Email Form for Netlify detection -->
     <form
-      name="ai-assessment-results"
+      name="ai-assessment-admin"
       netlify
       netlify-honeypot="bot-field"
       hidden
     >
+      <input type="email" name="to" />
+      <input type="text" name="subject" />
+      <textarea name="html"></textarea>
+      <textarea name="text"></textarea>
       <input type="text" name="firstName" />
       <input type="text" name="lastName" />
       <input type="email" name="email" />
       <input type="text" name="firmName" />
-      <textarea name="message"></textarea>
       <input type="text" name="overallScore" />
       <input type="text" name="qualification" />
-      <input type="text" name="clientAIScore" />
-      <input type="text" name="personalAIScore" />
-      <input type="text" name="readinessScore" />
-      <input type="text" name="bookingLink" />
       <input type="checkbox" name="gdprConsent" />
+      <input name="bot-field" />
+    </form>
+
+    <!-- AI Assessment User Email Form for Netlify detection -->
+    <form name="ai-assessment-user" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="to" />
+      <input type="text" name="subject" />
+      <textarea name="html"></textarea>
+      <textarea name="text"></textarea>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="text" name="firmName" />
       <input name="bot-field" />
     </form>
 
