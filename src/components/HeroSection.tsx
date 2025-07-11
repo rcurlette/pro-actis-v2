@@ -36,7 +36,12 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button
                 className="proactis-button-primary group"
-                onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+                onClick={() =>
+                  window.open(
+                    "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy",
+                    "_blank",
+                  )
+                }
               >
                 Book Your Complimentary Call
                 <svg
