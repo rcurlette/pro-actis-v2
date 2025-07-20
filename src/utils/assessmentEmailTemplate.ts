@@ -24,10 +24,14 @@ export const generateAssessmentEmailHTML = (
 
   const getQualificationColor = (qualification: string) => {
     switch (qualification) {
-      case "high": return "#ef4444"; // Red (high priority)
-      case "medium": return "#f59e0b"; // Yellow
-      case "low": return "#10b981"; // Green
-      default: return "#6b7280";
+      case "high":
+        return "#ef4444"; // Red (high priority)
+      case "medium":
+        return "#f59e0b"; // Yellow
+      case "low":
+        return "#10b981"; // Green
+      default:
+        return "#6b7280";
     }
   };
 
@@ -65,7 +69,7 @@ export const generateAssessmentEmailHTML = (
 
   <div style="background-color: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
     <h3 style="color: #0369a1; margin-top: 0;">🚀 Strategic Recommendations:</h3>
-    ${data.result.recommendations.map(rec => `<p style="margin: 8px 0;">• ${rec}</p>`).join('')}
+    ${data.result.recommendations.map((rec) => `<p style="margin: 8px 0;">• ${rec}</p>`).join("")}
   </div>
 
   <div style="background-color: #2962FF; color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
@@ -136,23 +140,31 @@ export const generateAssessmentEmailHTML = (
     </div>
   </div>
 
-  ${data.result.strengths.length > 0 ? `
+  ${
+    data.result.strengths.length > 0
+      ? `
   <div style="background-color: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; padding: 20px; margin: 20px 0;">
     <h3 style="color: #15803d; margin-top: 0;">🎉 Key Strengths</h3>
-    ${data.result.strengths.map(strength => `<p style="margin: 8px 0;">• ${strength}</p>`).join('')}
+    ${data.result.strengths.map((strength) => `<p style="margin: 8px 0;">• ${strength}</p>`).join("")}
   </div>
-  ` : ''}
+  `
+      : ""
+  }
 
-  ${data.result.improvements.length > 0 ? `
+  ${
+    data.result.improvements.length > 0
+      ? `
   <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 20px 0;">
     <h3 style="color: #92400e; margin-top: 0;">📈 Areas for Improvement</h3>
-    ${data.result.improvements.map(improvement => `<p style="margin: 8px 0;">• ${improvement}</p>`).join('')}
+    ${data.result.improvements.map((improvement) => `<p style="margin: 8px 0;">• ${improvement}</p>`).join("")}
   </div>
-  ` : ''}
+  `
+      : ""
+  }
 
   <div style="background-color: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
     <h3 style="color: #0369a1; margin-top: 0;">🚀 Strategic Recommendations</h3>
-    ${data.result.recommendations.map(rec => `<p style="margin: 8px 0;">• ${rec}</p>`).join('')}
+    ${data.result.recommendations.map((rec) => `<p style="margin: 8px 0;">• ${rec}</p>`).join("")}
   </div>
 
   <div style="background-color: #2962FF; color: white; padding: 30px; border-radius: 8px; text-align: center; margin: 20px 0;">
