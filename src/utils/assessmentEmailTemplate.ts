@@ -9,6 +9,7 @@ export interface AssessmentEmailData {
   completedAt: Date;
 }
 
+// Simple HTML template optimized for email clients (Gmail, Outlook, etc.)
 export const generateAssessmentEmailHTML = (
   data: AssessmentEmailData,
   isForAdmin: boolean = false,
@@ -23,322 +24,165 @@ export const generateAssessmentEmailHTML = (
 
   const getQualificationColor = (qualification: string) => {
     switch (qualification) {
-      case "high":
-        return "#ef4444"; // Red (high priority for services)
-      case "medium":
-        return "#f59e0b"; // Yellow
-      case "low":
-        return "#10b981"; // Green
-      default:
-        return "#6b7280";
+      case "high": return "#ef4444"; // Red (high priority)
+      case "medium": return "#f59e0b"; // Yellow
+      case "low": return "#10b981"; // Green
+      default: return "#6b7280";
     }
   };
 
-  const emailTitle = isForAdmin
-    ? `New AI Assessment Completed by ${data.firstName} ${data.lastName}`
-    : `Your AI Readiness Assessment Results - ${data.result.overallScore}% Score`;
+  if (isForAdmin) {
+    return `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+  <div style="background-color: #2962FF; color: white; padding: 30px; text-align: center; border-radius: 8px;">
+    <h1 style="margin: 0; font-size: 24px;">⚡ Pro-Actis AI</h1>
+    <p style="margin: 10px 0 0 0; font-size: 16px;">New Assessment Completed</p>
+  </div>
 
-  return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${emailTitle}</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #334155;
-            margin: 0;
-            padding: 0;
-            background-color: #f8fafc;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            background: linear-gradient(135deg, #2962FF, #1e40af);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        .logo {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        .content {
-            padding: 40px 30px;
-        }
-        .score-card {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            margin: 30px 0;
-            border-left: 4px solid #2962FF;
-        }
-        .score-number {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .qualification-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 12px;
-            margin: 10px 0;
-        }
-        .category-scores {
-            display: grid;
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .category-item {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 20px;
-            border-left: 4px solid #2962FF;
-        }
-        .category-name {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-        .category-score {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .recommendations {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-        .recommendations h3 {
-            color: #0369a1;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        .recommendations ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .recommendations li {
-            margin-bottom: 8px;
-        }
-        .cta-section {
-            background: linear-gradient(135deg, #2962FF, #1e40af);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 30px 0;
-        }
-        .cta-button {
-            display: inline-block;
-            background: #ffc107;
-            color: #1e293b;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 15px 0;
-        }
-        .footer {
-            background: #f1f5f9;
-            padding: 30px;
-            text-align: center;
-            color: #64748b;
-            font-size: 14px;
-        }
-        .admin-info {
-            background: #fef3c7;
-            border: 1px solid #f59e0b;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .admin-info h3 {
-            color: #92400e;
-            margin-top: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">⚡</div>
-            <h1>Pro-Actis AI</h1>
-            <p>${isForAdmin ? "New Assessment Completed" : "AI Readiness Assessment Results"}</p>
-        </div>
-        
-        <div class="content">
-            ${
-              isForAdmin
-                ? `
-            <div class="admin-info">
-                <h3>Assessment Details</h3>
-                <p><strong>Client:</strong> ${data.firstName} ${data.lastName}</p>
-                <p><strong>Email:</strong> ${data.userEmail}</p>
-                <p><strong>Firm:</strong> ${data.firmName}</p>
-                <p><strong>Completed:</strong> ${data.completedAt.toLocaleDateString()} at ${data.completedAt.toLocaleTimeString()}</p>
-                <p><strong>Qualification Level:</strong> <span style="color: ${getQualificationColor(data.result.qualification)}; font-weight: bold; text-transform: uppercase;">${data.result.qualification} Priority</span></p>
-            </div>
-            `
-                : `
-            <h2>Hello ${data.firstName},</h2>
-            <p>Thank you for completing the Pro-Actis AI Readiness Assessment. Here are your personalized results:</p>
-            `
-            }
-            
-            <div class="score-card">
-                <h3>Overall AI Readiness Score</h3>
-                <div class="score-number" style="color: ${getScoreColor(data.result.overallScore)}">
-                    ${data.result.overallScore}%
-                </div>
-                <div class="qualification-badge" style="background-color: ${getQualificationColor(data.result.qualification)}; color: white;">
-                    ${data.result.qualification} Priority
-                </div>
-                <p style="margin-top: 15px; font-style: italic;">
-                    ${qualificationInfo.message}
-                </p>
-            </div>
-            
-            <h3>Category Breakdown</h3>
-            <div class="category-scores">
-                <div class="category-item">
-                    <div class="category-name">👥 Client AI Expectations</div>
-                    <div class="category-score" style="color: ${getScoreColor(data.result.categoryScores.client_ai)}">
-                        ${data.result.categoryScores.client_ai}%
-                    </div>
-                    <p style="font-size: 14px; color: #64748b; margin: 5px 0 0 0;">
-                        How your clients view and expect AI usage
-                    </p>
-                </div>
-                
-                <div class="category-item">
-                    <div class="category-name">⚡ Current AI Implementation</div>
-                    <div class="category-score" style="color: ${getScoreColor(data.result.categoryScores.personal_ai)}">
-                        ${data.result.categoryScores.personal_ai}%
-                    </div>
-                    <p style="font-size: 14px; color: #64748b; margin: 5px 0 0 0;">
-                        Your firm's current AI tool usage
-                    </p>
-                </div>
-                
-                <div class="category-item">
-                    <div class="category-name">🎯 AI Readiness</div>
-                    <div class="category-score" style="color: ${getScoreColor(data.result.categoryScores.readiness)}">
-                        ${data.result.categoryScores.readiness}%
-                    </div>
-                    <p style="font-size: 14px; color: #64748b; margin: 5px 0 0 0;">
-                        Infrastructure and team preparedness
-                    </p>
-                </div>
-            </div>
-            
-            ${
-              data.result.strengths.length > 0
-                ? `
-            <div class="recommendations" style="background: #f0fdf4; border-color: #22c55e;">
-                <h3 style="color: #15803d;">🎉 Key Strengths</h3>
-                <ul>
-                    ${data.result.strengths.map((strength) => `<li>${strength}</li>`).join("")}
-                </ul>
-            </div>
-            `
-                : ""
-            }
-            
-            ${
-              data.result.improvements.length > 0
-                ? `
-            <div class="recommendations" style="background: #fef3c7; border-color: #f59e0b;">
-                <h3 style="color: #92400e;">📈 Areas for Improvement</h3>
-                <ul>
-                    ${data.result.improvements.map((improvement) => `<li>${improvement}</li>`).join("")}
-                </ul>
-            </div>
-            `
-                : ""
-            }
-            
-            <div class="recommendations">
-                <h3>🚀 Strategic Recommendations</h3>
-                <ul>
-                    ${data.result.recommendations.map((recommendation) => `<li>${recommendation}</li>`).join("")}
-                </ul>
-            </div>
-            
-            ${
-              !isForAdmin
-                ? `
-            <div class="cta-section">
-                <h3>Ready to Accelerate Your AI Journey?</h3>
-                <p>Based on your assessment results, Pro-Actis can help you implement the right AI strategy to meet your clients' expectations and gain competitive advantage.</p>
-                <a href="https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy" class="cta-button">
-                    📞 Book Your FREE 30-Minute Discovery Call
-                </a>
-                <p style="font-size: 14px; margin-top: 20px; opacity: 0.9;">
-                    During this call, we'll discuss your specific needs and create a customized AI implementation roadmap for your firm.
-                </p>
-            </div>
-            `
-                : `
-            <div class="cta-section">
-                <h3>Follow Up Actions</h3>
-                <p>This ${data.result.qualification} priority lead is ready for consultation. Their assessment shows ${data.result.qualification === "high" ? "immediate" : data.result.qualification === "medium" ? "moderate" : "low"} need for Pro-Actis services.</p>
-                <a href="mailto:${data.userEmail}?subject=Your AI Readiness Assessment Results - Next Steps" class="cta-button">
-                    📧 Contact ${data.firstName}
-                </a>
-                <p style="font-size: 14px; margin-top: 15px; opacity: 0.9;">
-                    Recommended approach: ${data.result.qualification === "high" ? "Schedule immediate consultation call" : data.result.qualification === "medium" ? "Follow up within 48 hours with optimization strategy" : "Add to nurturing sequence for advanced content"}
-                </p>
-            </div>
-            `
-            }
-        </div>
-        
-        <div class="footer">
-            <p><strong>Pro-Actis AI</strong> - Empowering Legal Excellence Through Artificial Intelligence</p>
-            <p>Generated on ${data.completedAt.toLocaleDateString()}</p>
-            <p>
-                <a href="https://pro-actis.com" style="color: #2962FF;">www.pro-actis.com</a> | 
-                <a href="mailto:contact@pro-actis.com" style="color: #2962FF;">contact@pro-actis.com</a>
-            </p>
-            ${
-              !isForAdmin
-                ? `
-            <p style="font-size: 12px; margin-top: 20px; color: #94a3b8;">
-                This email was sent because you completed an AI readiness assessment on our website. 
-                If you have any questions, please contact us at the email above.
-            </p>
-            `
-                : ""
-            }
-        </div>
+  <div style="background-color: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 20px 0;">
+    <h2 style="color: #92400e; margin-top: 0;">📋 Assessment Details</h2>
+    <p><strong>Client:</strong> ${data.firstName} ${data.lastName}</p>
+    <p><strong>Email:</strong> ${data.userEmail}</p>
+    <p><strong>Firm:</strong> ${data.firmName}</p>
+    <p><strong>Completed:</strong> ${data.completedAt.toLocaleDateString()} at ${data.completedAt.toLocaleTimeString()}</p>
+    <p><strong>Qualification:</strong> <span style="color: ${getQualificationColor(data.result.qualification)}; font-weight: bold; text-transform: uppercase;">${data.result.qualification} PRIORITY</span></p>
+  </div>
+
+  <div style="background-color: #f1f5f9; border: 3px solid #2962FF; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
+    <h2 style="margin-top: 0;">Overall AI Readiness Score</h2>
+    <div style="font-size: 36px; font-weight: bold; color: ${getScoreColor(data.result.overallScore)}; margin: 10px 0;">
+      ${data.result.overallScore}%
     </div>
-</body>
-</html>
-  `;
+    <p style="font-style: italic; color: #64748b;">${qualificationInfo.message}</p>
+  </div>
+
+  <div style="margin: 20px 0;">
+    <h3>📊 Category Breakdown:</h3>
+    <p>👥 <strong>Client AI Expectations:</strong> <span style="color: ${getScoreColor(data.result.categoryScores.client_ai)}; font-weight: bold;">${data.result.categoryScores.client_ai}%</span></p>
+    <p>⚡ <strong>Current AI Implementation:</strong> <span style="color: ${getScoreColor(data.result.categoryScores.personal_ai)}; font-weight: bold;">${data.result.categoryScores.personal_ai}%</span></p>
+    <p>🎯 <strong>AI Readiness:</strong> <span style="color: ${getScoreColor(data.result.categoryScores.readiness)}; font-weight: bold;">${data.result.categoryScores.readiness}%</span></p>
+  </div>
+
+  <div style="background-color: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
+    <h3 style="color: #0369a1; margin-top: 0;">🚀 Strategic Recommendations:</h3>
+    ${data.result.recommendations.map(rec => `<p style="margin: 8px 0;">• ${rec}</p>`).join('')}
+  </div>
+
+  <div style="background-color: #2962FF; color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
+    <h3 style="margin-top: 0;">Follow Up Actions</h3>
+    <p>This <strong>${data.result.qualification} priority</strong> lead is ready for consultation.</p>
+    <p style="margin: 15px 0;">
+      <a href="mailto:${data.userEmail}?subject=Your AI Readiness Assessment Results - Next Steps"
+         style="background-color: #ffc107; color: #1e293b; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+        📧 Contact ${data.firstName}
+      </a>
+    </p>
+  </div>
+
+  <div style="background-color: #f1f5f9; padding: 20px; text-align: center; color: #64748b; font-size: 14px; margin-top: 20px;">
+    <p><strong>Pro-Actis AI</strong> - Empowering Legal Excellence Through Artificial Intelligence</p>
+    <p>Generated on ${data.completedAt.toLocaleDateString()}</p>
+  </div>
+</div>`;
+  } else {
+    return `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+  <div style="background-color: #2962FF; color: white; padding: 30px; text-align: center; border-radius: 8px;">
+    <h1 style="margin: 0; font-size: 24px;">⚡ Pro-Actis AI</h1>
+    <p style="margin: 10px 0 0 0; font-size: 16px;">AI Readiness Assessment Results</p>
+  </div>
+
+  <div style="padding: 20px 0;">
+    <h2>Hello ${data.firstName},</h2>
+    <p>Thank you for completing the Pro-Actis AI Readiness Assessment. Here are your personalized results:</p>
+  </div>
+
+  <div style="background-color: #f1f5f9; border: 3px solid #2962FF; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
+    <h2 style="margin-top: 0;">Overall AI Readiness Score</h2>
+    <div style="font-size: 48px; font-weight: bold; color: ${getScoreColor(data.result.overallScore)}; margin: 10px 0;">
+      ${data.result.overallScore}%
+    </div>
+    <div style="background-color: ${getQualificationColor(data.result.qualification)}; color: white; padding: 8px 16px; border-radius: 20px; display: inline-block; font-weight: bold; text-transform: uppercase; font-size: 12px; margin: 10px 0;">
+      ${data.result.qualification} Priority
+    </div>
+    <p style="font-style: italic; color: #64748b; margin-top: 15px;">${qualificationInfo.message}</p>
+  </div>
+
+  <div style="margin: 20px 0;">
+    <h3>📊 Category Breakdown</h3>
+
+    <div style="background-color: #f8fafc; border-left: 4px solid #2962FF; padding: 15px; margin: 10px 0;">
+      <div style="font-weight: bold; margin-bottom: 5px;">👥 Client AI Expectations</div>
+      <div style="font-size: 20px; font-weight: bold; color: ${getScoreColor(data.result.categoryScores.client_ai)}; margin-bottom: 5px;">
+        ${data.result.categoryScores.client_ai}%
+      </div>
+      <p style="font-size: 14px; color: #64748b; margin: 0;">How your clients view and expect AI usage</p>
+    </div>
+
+    <div style="background-color: #f8fafc; border-left: 4px solid #2962FF; padding: 15px; margin: 10px 0;">
+      <div style="font-weight: bold; margin-bottom: 5px;">⚡ Current AI Implementation</div>
+      <div style="font-size: 20px; font-weight: bold; color: ${getScoreColor(data.result.categoryScores.personal_ai)}; margin-bottom: 5px;">
+        ${data.result.categoryScores.personal_ai}%
+      </div>
+      <p style="font-size: 14px; color: #64748b; margin: 0;">Your firm's current AI tool usage</p>
+    </div>
+
+    <div style="background-color: #f8fafc; border-left: 4px solid #2962FF; padding: 15px; margin: 10px 0;">
+      <div style="font-weight: bold; margin-bottom: 5px;">🎯 AI Readiness</div>
+      <div style="font-size: 20px; font-weight: bold; color: ${getScoreColor(data.result.categoryScores.readiness)}; margin-bottom: 5px;">
+        ${data.result.categoryScores.readiness}%
+      </div>
+      <p style="font-size: 14px; color: #64748b; margin: 0;">Infrastructure and team preparedness</p>
+    </div>
+  </div>
+
+  ${data.result.strengths.length > 0 ? `
+  <div style="background-color: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; padding: 20px; margin: 20px 0;">
+    <h3 style="color: #15803d; margin-top: 0;">🎉 Key Strengths</h3>
+    ${data.result.strengths.map(strength => `<p style="margin: 8px 0;">• ${strength}</p>`).join('')}
+  </div>
+  ` : ''}
+
+  ${data.result.improvements.length > 0 ? `
+  <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 20px 0;">
+    <h3 style="color: #92400e; margin-top: 0;">📈 Areas for Improvement</h3>
+    ${data.result.improvements.map(improvement => `<p style="margin: 8px 0;">• ${improvement}</p>`).join('')}
+  </div>
+  ` : ''}
+
+  <div style="background-color: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 20px; margin: 20px 0;">
+    <h3 style="color: #0369a1; margin-top: 0;">🚀 Strategic Recommendations</h3>
+    ${data.result.recommendations.map(rec => `<p style="margin: 8px 0;">• ${rec}</p>`).join('')}
+  </div>
+
+  <div style="background-color: #2962FF; color: white; padding: 30px; border-radius: 8px; text-align: center; margin: 20px 0;">
+    <h3 style="margin-top: 0;">Ready to Accelerate Your AI Journey?</h3>
+    <p>Based on your assessment results, Pro-Actis can help you implement the right AI strategy to meet your clients' expectations and gain competitive advantage.</p>
+    <p style="margin: 20px 0;">
+      <a href="https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy"
+         style="background-color: #ffc107; color: #1e293b; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+        📞 Book Your FREE 30-Minute Discovery Call
+      </a>
+    </p>
+    <p style="font-size: 14px; opacity: 0.9; margin-top: 20px;">
+      During this call, we'll discuss your specific needs and create a customized AI implementation roadmap for your firm.
+    </p>
+  </div>
+
+  <div style="background-color: #f1f5f9; padding: 20px; text-align: center; color: #64748b; font-size: 14px;">
+    <p><strong>Pro-Actis AI</strong> - Empowering Legal Excellence Through Artificial Intelligence</p>
+    <p>Generated on ${data.completedAt.toLocaleDateString()}</p>
+    <p>
+      <a href="https://pro-actis.com" style="color: #2962FF;">www.pro-actis.com</a> |
+      <a href="mailto:contact@pro-actis.com" style="color: #2962FF;">contact@pro-actis.com</a>
+    </p>
+    <p style="font-size: 12px; margin-top: 20px; color: #94a3b8;">
+      This email was sent because you completed an AI readiness assessment on our website.
+      If you have any questions, please contact us at the email above.
+    </p>
+  </div>
+</div>`;
+  }
 };
 
 // Utility function to create a plain text version for better email compatibility
