@@ -198,8 +198,8 @@ const QuizResultsModal = ({
         "subject",
         `Your AI Readiness Assessment Results - ${result.overallScore}% Score`,
       );
-      // Primary content as text for reliable email delivery
-      userFormData.append("message", userEmailText);
+      // Primary content as enhanced text for reliable email delivery
+      userFormData.append("message", userMessage);
       userFormData.append("html-content", userEmailHTML);
       userFormData.append("firstName", formData.firstName.trim());
       userFormData.append("lastName", formData.lastName.trim());
