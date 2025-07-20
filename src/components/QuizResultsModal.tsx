@@ -160,7 +160,7 @@ const QuizResultsModal = ({
         completedAt: new Date(),
       };
 
-      // Generate HTML emails for both admin and user
+      // Generate both HTML and text emails for admin and user
       const adminEmailHTML = generateAssessmentEmailHTML(emailData, true);
       const userEmailHTML = generateAssessmentEmailHTML(emailData, false);
       const adminEmailText = generateAssessmentEmailText(emailData, true);
@@ -175,8 +175,10 @@ const QuizResultsModal = ({
         "subject",
         `New AI Assessment: ${formData.firstName} ${formData.lastName} - ${result.qualification.toUpperCase()} Priority`,
       );
-      adminFormData.append("html", adminEmailHTML);
-      adminFormData.append("text", adminEmailText);
+      // Netlify forms work better with text content for email delivery
+      // HTML content will be included for potential webhook processing
+      adminFormData.append("message", adminEmailText);
+      adminFormData.append("html-content", adminEmailHTML);
       adminFormData.append("firstName", formData.firstName.trim());
       adminFormData.append("lastName", formData.lastName.trim());
       adminFormData.append("email", formData.email.trim());
@@ -194,8 +196,9 @@ const QuizResultsModal = ({
         "subject",
         `Your AI Readiness Assessment Results - ${result.overallScore}% Score`,
       );
-      userFormData.append("html", userEmailHTML);
-      userFormData.append("text", userEmailText);
+      // Primary content as text for reliable email delivery
+      userFormData.append("message", userEmailText);
+      userFormData.append("html-content", userEmailHTML);
       userFormData.append("firstName", formData.firstName.trim());
       userFormData.append("lastName", formData.lastName.trim());
       userFormData.append("firmName", formData.firmName.trim());
