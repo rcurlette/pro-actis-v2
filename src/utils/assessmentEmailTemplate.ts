@@ -185,7 +185,7 @@ export const generateAssessmentEmailHTML = (
   }
 };
 
-// Utility function to create a plain text version for better email compatibility
+// Enhanced plain text version with better formatting for email compatibility
 export const generateAssessmentEmailText = (
   data: AssessmentEmailData,
   isForAdmin: boolean = false,
@@ -193,89 +193,116 @@ export const generateAssessmentEmailText = (
   const qualificationInfo = getQualificationMessage(data.result.qualification);
 
   if (isForAdmin) {
-    return `
-NEW AI ASSESSMENT COMPLETED
-============================
+    return `⚡ PRO-ACTIS AI - NEW ASSESSMENT COMPLETED ⚡
+====================================================
 
-Client Information:
-- Name: ${data.firstName} ${data.lastName}
-- Email: ${data.userEmail}
-- Firm: ${data.firmName}
-- Completed: ${data.completedAt.toLocaleDateString()} at ${data.completedAt.toLocaleTimeString()}
+📋 CLIENT INFORMATION:
+━━━━━━━━━━━━━━━━━━━━━��━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.userEmail}
+Firm: ${data.firmName}
+Completed: ${data.completedAt.toLocaleDateString()} at ${data.completedAt.toLocaleTimeString()}
 
-Assessment Results:
-- Overall Score: ${data.result.overallScore}%
-- Qualification: ${data.result.qualification.toUpperCase()} PRIORITY
-- Client AI Expectations: ${data.result.categoryScores.client_ai}%
-- Current AI Implementation: ${data.result.categoryScores.personal_ai}%
-- AI Readiness: ${data.result.categoryScores.readiness}%
+🎯 QUALIFICATION: ${data.result.qualification.toUpperCase()} PRIORITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Assessment Summary:
+📊 ASSESSMENT RESULTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall AI Readiness Score: ${data.result.overallScore}%
+
+Category Breakdown:
+👥 Client AI Expectations: ${data.result.categoryScores.client_ai}%
+⚡ Current AI Implementation: ${data.result.categoryScores.personal_ai}%
+🎯 AI Readiness: ${data.result.categoryScores.readiness}%
+
+💡 ASSESSMENT SUMMARY:
 ${qualificationInfo.message}
 
-Strategic Recommendations:
+🚀 STRATEGIC RECOMMENDATIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${data.result.recommendations.map((rec, i) => `${i + 1}. ${rec}`).join("\n")}
 
-Next Steps:
-Contact ${data.firstName} at ${data.userEmail} for follow-up consultation.
+📞 NEXT STEPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is a ${data.result.qualification.toUpperCase()} PRIORITY lead.
+Contact ${data.firstName} at ${data.userEmail} for immediate follow-up consultation.
 
----
-Pro-Actis AI Assessment System
-Generated: ${data.completedAt.toLocaleString()}
-    `;
+Recommended approach: ${data.result.qualification === "high" ? "Schedule immediate consultation call" : data.result.qualification === "medium" ? "Follow up within 48 hours with optimization strategy" : "Add to nurturing sequence for advanced content"}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pro-Actis AI Assessment System | Generated: ${data.completedAt.toLocaleString()}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
   } else {
-    return `
-AI READINESS ASSESSMENT RESULTS
-===============================
+    return `⚡ YOUR AI READINESS ASSESSMENT RESULTS ⚡
+=========================================
 
 Hello ${data.firstName},
 
-Thank you for completing the Pro-Actis AI Readiness Assessment.
+Thank you for completing the Pro-Actis AI Readiness Assessment!
 
-YOUR RESULTS:
+📊 YOUR RESULTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Overall AI Readiness Score: ${data.result.overallScore}%
 Qualification Level: ${data.result.qualification.toUpperCase()} Priority
 
-CATEGORY BREAKDOWN:
-- Client AI Expectations: ${data.result.categoryScores.client_ai}%
-- Current AI Implementation: ${data.result.categoryScores.personal_ai}%
-- AI Readiness: ${data.result.categoryScores.readiness}%
+🔍 CATEGORY BREAKDOWN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👥 Client AI Expectations: ${data.result.categoryScores.client_ai}%
+   How your clients view and expect AI usage
 
-ASSESSMENT SUMMARY:
+⚡ Current AI Implementation: ${data.result.categoryScores.personal_ai}%
+   Your firm's current AI tool usage
+
+🎯 AI Readiness: ${data.result.categoryScores.readiness}%
+   Infrastructure and team preparedness
+
+💡 ASSESSMENT SUMMARY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${qualificationInfo.message}
 
 ${
   data.result.strengths.length > 0
-    ? `
-KEY STRENGTHS:
-${data.result.strengths.map((strength) => `• ${strength}`).join("\n")}
+    ? `🎉 KEY STRENGTHS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.result.strengths.map((strength) => `✓ ${strength}`).join("\n")}
+
 `
     : ""
 }
 
 ${
   data.result.improvements.length > 0
-    ? `
-AREAS FOR IMPROVEMENT:
+    ? `📈 AREAS FOR IMPROVEMENT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${data.result.improvements.map((improvement) => `• ${improvement}`).join("\n")}
+
 `
     : ""
 }
 
-STRATEGIC RECOMMENDATIONS:
+🚀 STRATEGIC RECOMMENDATIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${data.result.recommendations.map((rec, i) => `${i + 1}. ${rec}`).join("\n")}
 
-NEXT STEPS:
-Ready to accelerate your AI journey? Book your FREE 30-minute discovery call:
+📞 READY TO ACCELERATE YOUR AI JOURNEY?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Based on your assessment results, Pro-Actis can help you implement
+the right AI strategy to meet your clients' expectations and gain
+competitive advantage.
+
+🎯 Book Your FREE 30-Minute Discovery Call:
 https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy
 
-During this call, we'll discuss your specific needs and create a customized AI implementation roadmap for your firm.
+During this call, we'll discuss your specific needs and create a
+customized AI implementation roadmap for your firm.
 
----
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Pro-Actis AI - Empowering Legal Excellence Through Artificial Intelligence
-www.pro-actis.com | contact@pro-actis.com
+🌐 www.pro-actis.com | 📧 contact@pro-actis.com
 
-This email was sent because you completed an AI readiness assessment on our website.
-    `;
+This email was sent because you completed an AI readiness assessment
+on our website. If you have any questions, please contact us at the
+email above.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
   }
 };
