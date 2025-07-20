@@ -178,9 +178,8 @@ const QuizResultsModal = ({
         "subject",
         `New AI Assessment: ${formData.firstName} ${formData.lastName} - ${result.qualification.toUpperCase()} Priority`,
       );
-      // Netlify forms work better with text content for email delivery
-      // HTML content will be included for potential webhook processing
-      adminFormData.append("message", adminEmailText);
+      // Use enhanced formatting that displays well in all email clients
+      adminFormData.append("message", adminMessage);
       adminFormData.append("html-content", adminEmailHTML);
       adminFormData.append("firstName", formData.firstName.trim());
       adminFormData.append("lastName", formData.lastName.trim());
