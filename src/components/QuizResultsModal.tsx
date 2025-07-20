@@ -151,8 +151,8 @@ const QuizResultsModal = ({
     }
 
     try {
-      // Prepare email data
-      const emailData: AssessmentEmailData = {
+      // Prepare email data with new format
+      const emailData: EmailData = {
         userEmail: formData.email.trim(),
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
@@ -161,11 +161,13 @@ const QuizResultsModal = ({
         completedAt: new Date(),
       };
 
-      // Generate both HTML and text emails for admin and user
+      // Generate enhanced email messages that work well in all email clients
+      const adminMessage = generateEmailMessage(emailData, true);
+      const userMessage = generateEmailMessage(emailData, false);
+
+      // Also generate HTML versions as backup (for potential webhook use)
       const adminEmailHTML = generateAssessmentEmailHTML(emailData, true);
       const userEmailHTML = generateAssessmentEmailHTML(emailData, false);
-      const adminEmailText = generateAssessmentEmailText(emailData, true);
-      const userEmailText = generateAssessmentEmailText(emailData, false);
 
       // Create form data for admin email
       const adminFormData = new FormData();
