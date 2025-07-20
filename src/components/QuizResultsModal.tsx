@@ -26,6 +26,7 @@ import {
   generateAssessmentEmailText,
   AssessmentEmailData,
 } from "@/utils/assessmentEmailTemplate";
+import { generateEmailMessage, EmailData } from "@/utils/emailFormatting";
 import {
   BarChart3,
   TrendingUp,
