@@ -115,12 +115,28 @@ const LegalAudioCTA = () => {
 
             {/* Features */}
             <div className="space-y-6">
+              {features.slice(0, 1).map((feature, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className="bg-proactis-primary/20 rounded-lg p-2 flex-shrink-0">
+                    <div className="text-proactis-primary">{feature.icon}</div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-proactis-dark mb-1">
+                      {feature.title}
+                    </h4>
+                    <p className="text-proactis-gray-600 text-sm">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
               <h3 className="text-2xl font-bold text-proactis-dark mb-6">
                 What You'll Find in the Legal AI Hub
               </h3>
 
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
+              {features.slice(1).map((feature, index) => (
+                <div key={index + 1} className="flex items-start space-x-4">
                   <div className="bg-proactis-primary/20 rounded-lg p-2 flex-shrink-0">
                     <div className="text-proactis-primary">{feature.icon}</div>
                   </div>
