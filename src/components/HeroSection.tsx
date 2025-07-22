@@ -151,18 +151,22 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Enhanced visual with professional diverse team */}
+          {/* Enhanced visual with A.I For Lawyers YouTube video */}
           <div className="animate-slide-in-right">
             <div className="relative">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-proactis-gray-200">
-                <img
-                  src="https://images.pexels.com/photos/4427624/pexels-photo-4427624.jpeg"
-                  alt="Diverse group of European legal professionals collaborating with AI technology"
-                  className="w-full h-full object-cover"
-                />
+                {/* YouTube Video Embed */}
+                <iframe
+                  src="https://www.youtube.com/embed/ef33Cw-ZBLs?rel=0&modestbranding=1&showinfo=0"
+                  title="AI For Lawyers - Pro-Actis AI Solutions"
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
 
-                {/* Modern overlay with stats */}
-                <div className="absolute inset-0 bg-gradient-to-t from-proactis-dark/80 via-transparent to-transparent"></div>
+                {/* Lighter overlay to preserve video visibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-proactis-dark/30 via-transparent to-transparent pointer-events-none"></div>
 
                 {/* Floating stats cards */}
                 <div className="absolute bottom-6 left-6 right-6">
