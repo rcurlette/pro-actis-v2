@@ -18,12 +18,12 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <QuizCTA />
         <SolutionsSection />
         <ProcessSection />
         <PartnersSection />
         <TestimonialsSection />
         <AIShowcaseSection />
-        <QuizCTA />
         <LegalAudioCTA />
         <ContentGeneratorCTA />
         <DashboardCTA />
