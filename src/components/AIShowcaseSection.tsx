@@ -160,7 +160,12 @@ const AIShowcaseSection = () => {
 
             <button
               className="bg-proactis-secondary hover:bg-proactis-secondary/90 text-white px-8 py-4 rounded-lg font-semibold transition-all group"
-              onClick={() => setContactModal({ isOpen: true, type: "demo" })}
+              onClick={() =>
+                window.open(
+                  "https://calendly.com/mylinkedinads/talking-about-your-a-i-strategy?month=2025-07",
+                  "_blank",
+                )
+              }
             >
               Schedule Your AI Demo
               <svg
