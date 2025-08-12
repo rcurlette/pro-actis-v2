@@ -20,7 +20,7 @@ const HeroSection = () => {
     if (iframeRef.current) {
       iframeRef.current.contentWindow?.postMessage(
         '{"event":"command","func":"playVideo","args":""}',
-        "*",
+        "*"
       );
     }
   };
@@ -169,47 +169,41 @@ const HeroSection = () => {
           <div className="animate-slide-in-right">
             <div className="relative">
               <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-proactis-gray-200">
-                {/* YouTube Video Embed */}
-                <iframe
-                  ref={iframeRef}
-                  src="https://www.youtube.com/embed/ef33Cw-ZBLs?enablejsapi=1&rel=0&modestbranding=1&showinfo=0"
-                  title="AI For Lawyers - Pro-Actis AI Solutions"
-                  className="w-full h-full"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  onLoad={() => {
-                    // Listen for YouTube player state changes
-                    window.addEventListener("message", (event) => {
-                      if (event.origin !== "https://www.youtube.com") return;
-                      if (event.data && typeof event.data === "string") {
-                        try {
-                          const data = JSON.parse(event.data);
-                          if (
-                            data.event === "video-progress" ||
-                            (data.info && data.info.playerState === 1)
-                          ) {
-                            setIsVideoPlaying(true);
-                          } else if (
-                            data.info &&
-                            (data.info.playerState === 0 ||
-                              data.info.playerState === 2)
-                          ) {
-                            setIsVideoPlaying(false);
-                          }
-                        } catch (e) {
-                          // Ignore parsing errors
+              {/* YouTube Video Embed */}
+              <iframe
+                ref={iframeRef}
+                src="https://www.youtube.com/embed/ef33Cw-ZBLs?enablejsapi=1&rel=0&modestbranding=1&showinfo=0"
+                title="AI For Lawyers - Pro-Actis AI Solutions"
+                className="w-full h-full"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                onLoad={() => {
+                  // Listen for YouTube player state changes
+                  window.addEventListener('message', (event) => {
+                    if (event.origin !== 'https://www.youtube.com') return;
+                    if (event.data && typeof event.data === 'string') {
+                      try {
+                        const data = JSON.parse(event.data);
+                        if (data.event === 'video-progress' || (data.info && data.info.playerState === 1)) {
+                          setIsVideoPlaying(true);
+                        } else if (data.info && (data.info.playerState === 0 || data.info.playerState === 2)) {
+                          setIsVideoPlaying(false);
                         }
+                      } catch (e) {
+                        // Ignore parsing errors
                       }
-                    });
-                  }}
-                ></iframe>
+                    }
+                  });
+                }}
+              ></iframe>
 
-                {/* Lighter overlay to preserve video visibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-proactis-dark/30 via-transparent to-transparent pointer-events-none"></div>
+              {/* Lighter overlay to preserve video visibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-proactis-dark/30 via-transparent to-transparent pointer-events-none"></div>
 
-                {/* Floating stats cards */}
-                <div className="absolute bottom-6 left-6 right-6">
+              {/* Floating stats cards - hidden when video is playing */}
+              {!isVideoPlaying && (
+                <div className="absolute bottom-6 left-6 right-6 transition-opacity duration-500">
                   <div className="grid grid-cols-3 gap-4">
                     <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-proactis-primary mb-1">
@@ -237,6 +231,7 @@ const HeroSection = () => {
                     </div>
                   </div>
                 </div>
+              )}
 
                 {/* Play button overlay */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
