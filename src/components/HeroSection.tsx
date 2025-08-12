@@ -240,9 +240,13 @@ const HeroSection = () => {
                   </div>
                 )}
 
-                {/* Play button overlay */}
+              {/* Play button overlay - hidden when video is playing */}
+              {!isVideoPlaying && (
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <button className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/95 transition-all group">
+                  <button
+                    onClick={handlePlayVideo}
+                    className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/95 transition-all group"
+                  >
                     <svg
                       className="w-8 h-8 text-proactis-primary ml-1 group-hover:scale-110 transition-transform"
                       fill="currentColor"
@@ -252,6 +256,7 @@ const HeroSection = () => {
                     </svg>
                   </button>
                 </div>
+              )}
               </div>
 
               {/* Decorative elements */}
