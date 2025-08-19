@@ -231,12 +231,12 @@ const ContactFormModal = ({
             >
               <option value="">Select your country</option>
               <option value="France">🇫🇷 France</option>
-              <option value="Germany">🇩🇪 Germany</option>
-              <option value="Spain">🇪🇸 Spain</option>
+              <option value="England">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
               <option value="Italy">🇮🇹 Italy</option>
-              <option value="Netherlands">🇳🇱 Netherlands</option>
+              <option value="Greece">🇬🇷 Greece</option>
+              <option value="Bulgaria">🇧🇬 Bulgaria</option>
               <option value="Belgium">🇧🇪 Belgium</option>
-              <option value="Switzerland">🇨🇭 Switzerland</option>
+              <option value="Switzerland">��🇭 Switzerland</option>
               <option value="Austria">🇦🇹 Austria</option>
               <option value="Sweden">🇸🇪 Sweden</option>
               <option value="Denmark">🇩🇰 Denmark</option>

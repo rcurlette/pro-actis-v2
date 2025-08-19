@@ -116,27 +116,17 @@ const TestimonialsSection = () => {
               Serving Legal Professionals Across Europe
             </h3>
 
-            <div className="grid grid-cols-5 md:grid-cols-10 gap-4 mb-8">
+            <div className="flex justify-center gap-6 mb-8">
               {[
                 "🇫🇷",
-                "🇩🇪",
-                "🇪🇸",
+                "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
                 "🇮🇹",
-                "🇳🇱",
-                "🇧🇪",
-                "🇨🇭",
-                "🇦🇹",
-                "🇸🇪",
-                "🇩🇰",
-                "🇳🇴",
-                "🇫🇮",
-                "🇵🇱",
-                "🇨🇿",
-                "🇵🇹",
+                "🇬🇷",
+                "🇧🇬",
               ].map((flag, index) => (
                 <div
                   key={index}
-                  className="text-3xl hover:scale-110 transition-transform cursor-pointer"
+                  className="text-4xl hover:scale-110 transition-transform cursor-pointer"
                   title="European coverage"
                 >
                   {flag}
@@ -145,7 +135,7 @@ const TestimonialsSection = () => {
             </div>
 
             <p className="text-proactis-gray-600 text-lg">
-              Custom workshops delivered in-person across 15+ European countries
+              Custom workshops delivered in-person across France, England, Italy, Greece, and Bulgaria
             </p>
           </div>
         </div>
