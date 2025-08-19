@@ -109,36 +109,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* European coverage map visualization */}
-        <div className="mt-16 text-center">
-          <div className="bg-white rounded-2xl shadow-lg border border-proactis-gray-200 p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-proactis-dark mb-6">
-              Serving Legal Professionals Across Europe
-            </h3>
 
-            <div className="flex justify-center gap-6 mb-8">
-              {[
-                "🇫🇷",
-                "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-                "🇮🇹",
-                "🇬🇷",
-                "🇧🇬",
-              ].map((flag, index) => (
-                <div
-                  key={index}
-                  className="text-4xl hover:scale-110 transition-transform cursor-pointer"
-                  title="European coverage"
-                >
-                  {flag}
-                </div>
-              ))}
-            </div>
-
-            <p className="text-proactis-gray-600 text-lg">
-              Custom workshops delivered in-person across France, England, Italy, Greece, and Bulgaria
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
