@@ -79,11 +79,21 @@ const PartnersSection = () => {
             >
               {/* Logo */}
               <div className="mb-6">
-                <div
-                  className={`w-16 h-16 bg-gradient-to-br ${partner.color} rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-200`}
-                >
-                  {partner.logo}
-                </div>
+                {partner.name === "Upmeet" ? (
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F4a74079a46204c968e2901860cda9d20%2F462b31fd29254bb69f1482a1e962fef7?format=webp&width=800"
+                      alt="Upmeet Logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-br ${partner.color} rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-200`}
+                  >
+                    {partner.logo}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
