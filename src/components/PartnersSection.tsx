@@ -87,6 +87,30 @@ const PartnersSection = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
+                ) : partner.name === "Dripify" ? (
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F4a74079a46204c968e2901860cda9d20%2F5a397d518ce74d27850acaa8ccb21561?format=webp&width=800"
+                      alt="Dripify Logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : partner.name === "Lindy" ? (
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F4a74079a46204c968e2901860cda9d20%2Fefd67390c50f41e7a77f3605c608a11b?format=webp&width=800"
+                      alt="Lindy Logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : partner.name === "NotebookLM" ? (
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-200">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F4a74079a46204c968e2901860cda9d20%2F287afec3088f43a6a872d8b7fec0e003?format=webp&width=800"
+                      alt="NotebookLM Logo"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 ) : (
                   <div
                     className={`w-16 h-16 bg-gradient-to-br ${partner.color} rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-200`}
