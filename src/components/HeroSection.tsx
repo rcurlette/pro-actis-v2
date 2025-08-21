@@ -208,37 +208,7 @@ const HeroSection = () => {
                 {/* Lighter overlay to preserve video visibility */}
                 <div className="absolute inset-0 bg-gradient-to-t from-proactis-dark/30 via-transparent to-transparent pointer-events-none"></div>
 
-                {/* Floating stats cards - hidden when video is playing */}
-                {!isVideoPlaying && (
-                  <div className="absolute bottom-6 left-6 right-6 transition-opacity duration-500">
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-proactis-primary mb-1">
-                          On Demand
-                        </div>
-                        <div className="text-xs text-proactis-gray-600">
-                          Custom Built Assessment Forms
-                        </div>
-                      </div>
-                      <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-proactis-success mb-1">
-                          Designed
-                        </div>
-                        <div className="text-xs text-proactis-gray-600">
-                          Automated Workflow
-                        </div>
-                      </div>
-                      <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-proactis-secondary mb-1">
-                          15
-                        </div>
-                        <div className="text-xs text-proactis-gray-600">
-                          EU Countries
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+
 
                 {/* Play button overlay - hidden when video is playing */}
                 {!isVideoPlaying && (
